@@ -4,6 +4,7 @@
 Freshness - this, and all, k8s tutorial suffer from staleness quite quickly. In general, tutorials have been succesfully applied across versions, however this changes slightly with the new release structure of community supported kubernetes where each version has it's own distribution url.  The GPG keys, SSH keys, and apt sources that will change will be highlighted in the document.
 
 This version, dated October 1st, 2024, uses:
+
 | Component  | Version    |
 |------------|------------|
 | Ubuntu     | v24.04 LTS |
@@ -31,7 +32,7 @@ mounts:
 - [ swap, null ]
 ```
 
-We start with the '#cloud-config' stanza.  Next we have an choice. We can create separate cloud-config.yaml files for each node and provide our own hostname, or, depending on your provider, we leave the hostname/create_hostname_file stanza's out and your node will be called something random or will be called 'ubuntu' by default.  The hostname stanza is the only custom resource and if your hosts are called 'ubuntu', it's simple to change manually when you login to the host the first time.
+We start with the `#cloud-config` stanza.  Next we have an choice. We can create separate cloud-config.yaml files for each node and provide our own hostname, or, depending on your provider, we leave the hostname/create_hostname_file stanzas out and your node will be called something random or will be called `ubuntu` by default.  The hostname stanza is the only custom resource and if your hosts are called `ubuntu`, it's simple to change manually when you login to the host the first time.
 
 Finally, we make sure that swap is disabled in the config. Later, we'll run a command to make sure swap is currently off.
 ### Add admin user
@@ -133,7 +134,7 @@ packages:
   - fail2ban
 ```
 
-Technically, 'package-update: true' doesn't need to be called as, the packages stanza means it will run automatically, it's included here for clarity and to make sure it's run AFTER we added our repositories.
+Technically, `package-update: true` doesn't need to be called as, the packages stanza means it will run automatically, it's included here for clarity and to make sure it's run AFTER we added our repositories.
 
 ### Fail2ban
 All the packages above are consistent with most tutorials, with the expection of [fail2ban](https://github.com/fail2ban/fail2ban). This is added since we need to have an SSH port open to manage our system.  
