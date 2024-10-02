@@ -48,6 +48,7 @@ users:
 ```
 
 Next, we want to address the admin user. We want to disable root ssh login, so we need a regular user with admin privileges. We also want to secure our communication channel with a public/private key instead of using passwords for login. 
+
 ### Create system files
 ```
 write_files:
@@ -87,6 +88,7 @@ In the home stretch, we encounter the parts of the config that change.
 | The repository for kubernetest 1.30        | https://pkgs.k8s.io/core:/stable:/v1.30/deb/            |
 
 We'll add these into the correct locations below:
+
 ### Add apt sources
 ```
 apt:
@@ -118,6 +120,7 @@ apt:
 Here, we introduce the two apt sources so we can retrieve the necessary packages.
 
 > There are alternate ways to [specify apt sources](../extras/cloud-init-by-keyserver.md) besides including the PGP keys directly.
+
 ### Add required packages
 ```
 package-update: true
