@@ -1,3 +1,8 @@
+---
+layout: post
+title: Cloud-init by keyserver
+---
+
 # Cloud-init by keyserver
 
 If you prefer to not import the PGP Blocks into your yaml, there is an alternative.
