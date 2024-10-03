@@ -1,3 +1,8 @@
+---
+layout: post
+title: Bootstrapping Kubernetes nodes with cloud-init
+---
+
 # Bootstrapping Kubernetes nodes with cloud-init
 
 ## Freshness
