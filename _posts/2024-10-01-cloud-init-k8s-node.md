@@ -3,8 +3,6 @@ layout: post
 title: Bootstrapping Kubernetes nodes with cloud-init
 ---
 
-# Bootstrapping Kubernetes nodes with cloud-init
-
 ## Freshness
 Freshness - this, and all, k8s tutorial suffer from staleness quite quickly. In general, tutorials have been succesfully applied across versions, however this changes slightly with the new release structure of community supported kubernetes where each version has it's own distribution url.  The GPG keys, SSH keys, and apt sources that will change will be highlighted in the document.
 
