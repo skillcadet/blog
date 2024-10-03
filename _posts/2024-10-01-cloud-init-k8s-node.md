@@ -24,7 +24,7 @@ Let me introduce you to [Cloud-Init](https://cloud-init.io/).  Using cloud-init,
 
 We'll still have plenty to do to bring up and manage the cluster, however, we can start at the fun part and focus on what makes the nodes different.
 
-Let's take a look at the [cloud-init.yaml](./src/k8s/cloud-init.yaml) that we'll be crafting.
+Let's take a look at the [cloud-init.yaml](https://gist.github.com/ambled/f4c6949955724c6cb0f3e4fee164d086) that we'll be crafting.
 
 ### preamble, disable swap and (optional) customizable hostname
 ```
