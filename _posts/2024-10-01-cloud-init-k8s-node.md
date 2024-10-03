@@ -119,7 +119,7 @@ apt:
 
 Here, we introduce the two apt sources so we can retrieve the necessary packages.
 
-> There are alternate ways to [specify apt sources](,,/,,/../extras/cloud-init-by-keyserver.md) besides including the PGP keys directly.
+> There are alternate ways to [specify apt sources](https://blog.skillcadet.com/extras/cloud-init-by-keyserver.html) include the PGP keys directly.
 
 ### Add required packages
 ```
