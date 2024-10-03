@@ -3,8 +3,6 @@ layout: post
 title: Cloud-init by keyserver
 ---
 
-# Cloud-init by keyserver
-
 If you prefer to not import the PGP Blocks into your yaml, there is an alternative.
 
 It is a bit more involved and also subject to the changes in URL and KeyID with each version, or, as K8s points out, "since it is community run, anything can change.".
