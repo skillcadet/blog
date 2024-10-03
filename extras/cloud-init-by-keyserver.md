@@ -36,7 +36,7 @@ gpg: pub  rsa4096/8D81803C0EBFCD88 2017-02-22  Docker Release (CE deb) <docker@d
 gpg: Total number processed: 1
 ```
 
-To retrieve the containerd.list.keyid, see the result rsa4096/**__8D81803C0EBFCD88__**
+To retrieve the containerd.list.keyid, see the result rsa4096/**D81803C0EBFCD88**
 ### Kubernetes PGP keyid
 ```
 $ curl -s -L https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key |gpg --verbose --dry-run --import
@@ -46,7 +46,7 @@ gpg: key 234654DA9A296436: 1 signature not checked due to a missing key
 gpg: Total number processed: 1
 ```
 
-To retrieve the k8s.list.keyid, we need to add -L to the curl, to follow the redirect to the CDN and then the result rsa2048/**__234654DA9A296436__**
+To retrieve the k8s.list.keyid, we need to add -L to the curl, to follow the redirect to the CDN and then the result rsa2048/**234654DA9A296436**
 ### Kubernetes PGP CDN location
 ```
 curl -s -D -  https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key |grep location
