@@ -45,3 +45,61 @@ Now we make one small change to privoxy. We will add a listener on the internal 
 Later, in another post, we'll use NGINX as an external load balancer to our private cluster.
 
 
+## Cluster provisioning
+
+This bastion host now allows us to launch an initial fleet of servers that are not directly accessable from the internet, significantly reducing the attack surface of our cluster.
+
+To accomplish this task, we need to define the proxy server configuration for the nodes. We'll do this by making two additions to our cloud-init.yaml.
+
+```
+runcmd:
+  - echo "http_proxy=http://10.7.222.11:8888/" >> /etc/environment
+  - echo "https_proxy=http://10.7.222.11:8888/" >> /etc/environment
+  - echo "HTTP_PROXY=http://10.7.222.11:8888/" >> /etc/environment
+  - echo "HTTPS_PROXY=http://10.7.222.11:8888/" >> /etc/environment
+apt:
+  http_proxy: http://10.7.222.11:8888/
+  https_proxy: http://10.7.222.11:8888/
+```
+
+These should be included prior to any cloud-init stanza's that invoke external assets/packages.
+
+
+Now, when we spin up our hosts, we'll be able to configure ssh to reach the hosts through the bastion server.
+
+How many nodes do we spin up? This series of blogs will walk through setting up a cluster with stacked control plane nodes (vs using an external etcd cluster), which means we can select an odd number of control nodes.  One control node is obviously necessary for the cluster to start. For high availability, we would want 3 control nodes, so that the cluster will continue to operate smoothly even if (intentionally or otherwise) we have one control plane node down.
+
+```
+Host xd7imaster00
+    HostName 10.7.222.13
+    User ubuntu
+    IdentityFile ~/.ssh/id_rsa_blog_skillcadet
+    ProxyJump xd7tower
+
+Host xd7inode00
+    HostName 10.7.222.12
+    User ubuntu
+    IdentityFile ~/.ssh/id_rsa_blog_skillcadet
+    ProxyJump xd7tower
+
+Host xd7inode01
+    HostName 10.7.222.14
+    User ubuntu
+    IdentityFile ~/.ssh/id_rsa_blog_skillcadet
+    ProxyJump xd7tower
+```
+
+Finally, we add our internal hosts to the ssh config.  In addition to the Hostname information, we include the `ProxyJump` line so the ssh knows we reach the internal hosts via sshing through the tower host.
+
+```
+$ ssh xd7imaster00
+The authenticity of host '10.7.222.13 (<no hostip for proxy command>)' can't be established.
+ECDSA key fingerprint is SHA256:6lNvogJRmjYR9n1ZJs6KrCAXnGvsDmbW6RO0SG9DPvE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.7.222.13' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 24.04 LTS (GNU/Linux 6.8.0-31-generic x86_64)
+
+ubuntu@imaster00:~$
+```
+
+Now, we should be able to ssh directly to the internal hosts.
