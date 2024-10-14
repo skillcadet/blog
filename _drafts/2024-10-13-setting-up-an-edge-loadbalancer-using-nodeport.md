@@ -71,7 +71,7 @@ server {
         }
 }
 ```
-Here, we add an `upstream` stanza, pointing to each of our available nodes and the NodePort for our deployment.
+Here, we add an `upstream` stanza, pointing to each of our available nodes and the NodePort for our deployment. You could create this file in your cloud-init using `write-files:` stanza, customized to your site.
 
 ```
 sudo ln -s /etc/nginx/sites-available/blog.xd7.org.conf /etc/nginx/sites-enabled
