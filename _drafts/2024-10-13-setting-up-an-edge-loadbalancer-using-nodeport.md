@@ -40,7 +40,7 @@ Having established that our edge host is reachable, add the IP address to a regi
 This entails adding the IPv4 A (and optionally IPv6 AAAA ) addresses to your DNS configuration.
 
 ```
-161.200.20.1010          IN A    blog.xd7.org.
+161.200.20.100          IN A    blog.xd7.org.
 2607:b500:200:2000:1::1  IN AAAA blog.xd7.org.
 ```
 
