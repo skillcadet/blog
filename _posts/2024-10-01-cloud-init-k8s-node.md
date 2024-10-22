@@ -72,15 +72,7 @@ write_files:
 
 Additionally, we need a few configuration files to be written, luckly that is easily accomplished with cloud-init.
 ### update config changes
-```
-runcmd:
-  - [ swapoff, -a ]
-  - [ modprobe, overlay ]
-  - [ modprobe, br_netfilter ]
-  - [ sysctl, --system ]
-```
 
-Now, we execute commands to bring the configuration changes to an active state.
 
 In the home stretch, we encounter the parts of the config that change.
 
@@ -150,6 +142,10 @@ Now, we've already disabled root login and disabled password logins in favor of 
 ### Configure containerd, lock packages and start fail2ban
 ```
 runcmd:
+  - [ swapoff, -a ]
+  - [ modprobe, overlay ]
+  - [ modprobe, br_netfilter ]
+  - [ sysctl, --system ]
   - containerd config default | tee /etc/containerd/config.toml >/dev/null 2>&1
   - [ sed, -i, 's/SystemdCgroup \= false/SystemdCgroup \= true/g', /etc/containerd/config.toml ]
   - [ systemctl, restart, containerd ]
@@ -160,7 +156,7 @@ runcmd:
 
 Almost finished now, we execute some commands to prepare the system.
 
-First, we need to generate a containerd config file so we can override the default SystemdCgroup setting with 'sed'.
+First, we apply system changes we made with write_files above. Then, we need to generate a containerd config file so we can override the default SystemdCgroup setting with 'sed'.
 Next, we restart containerd to use the proper Cgroup.  We follow that with marking the kubernetes packages as HOLD so they do not get upgraded automatically. And then we enable and start fail2ban.
 
 ### Restart to start with a clean environment
