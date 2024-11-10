@@ -4,7 +4,7 @@ title: Bootstrapping Kubernetes nodes with cloud-init
 ---
 
 ## Freshness
-Freshness - this, and all, k8s tutorial suffer from staleness quite quickly. In general, tutorials have been succesfully applied across versions, however this changes slightly with the new release structure of community supported kubernetes where each version has it's own distribution url.  The GPG keys, SSH keys, and apt sources that will change will be highlighted in the document.
+Freshness - this, and all, k8s tutorial suffer from staleness quite quickly. In general, tutorials have been succesfully applied across versions, however this changes slightly with the new (2024) release structure of community supported kubernetes, where each version has it's own distribution url.  The GPG keys, SSH keys, and apt sources that will change will be highlighted in the document.
 
 This version, dated October 1st, 2024, uses:
 
@@ -17,7 +17,7 @@ This version, dated October 1st, 2024, uses:
 ## Why this post
 There are plenty of tutorials out there that walk through manually setting up a kubernetes cluster, however, in the real world, we want to make things repeatable and not tedius. There are a few ways to provide this capability, most of them, like Anisible/Puppet/Chef/Salt/Terraform/Cloudformation all require additional infrastructure.  
 
-But, what if there was a way to provide repeatable configuration, across cloud platform providers, using a text file that can be checked into a code repository.
+But, what if there was a way to provide repeatable configuration, across cloud and virtualization platform providers, using a text file that can be checked into a code repository?
 
 ## cloud-init
 Let me introduce you to [Cloud-Init](https://cloud-init.io/).  Using cloud-init, we will perform all the basic installation steps to bring a stock system image and prepare it to receive a kubernetes node.
