@@ -32,12 +32,12 @@ Let's take a look at the [cloud-init.yaml](https://gist.github.com/ambled/f4c694
 hostname: inode01
 create_hostname_file: true
 mounts:
-- [ swap, null ]
+- [ swap ]
 ```
 
 We start with the `#cloud-config` stanza.  Next we have an choice. We can create separate cloud-config.yaml files for each node and provide our own hostname, or, depending on your provider, we leave the hostname/create_hostname_file stanzas out and your node will be called something random or will be called `ubuntu` by default.  The hostname stanza is the only custom resource and if your hosts are called `ubuntu`, it's simple to change manually when you login to the host the first time.
 
-Finally, we make sure that swap is disabled in the config. Later, we'll run a command to make sure swap is currently off.
+Finally, we make sure that swap is disabled by providing no options in the config. Later, we'll run a command to make sure swap is currently off.
 ### Add admin user
 ```
 users:
@@ -57,14 +57,14 @@ Next, we want to address the admin user. We want to disable root ssh login, so w
 write_files:
 - path: /etc/sysctl.d/kubernetes.conf
   owner: root:root
-  permissions: 0o644
+  permissions: '644'
   content: |
     net.bridge.bridge-nf-call-ip6tables = 1
     net.bridge.bridge-nf-call-iptables = 1
     net.ipv4.ip_forward = 1
 - path: /etc/modules-load.d/k8s.conf
   owner: root:root
-  permissions: 0o644
+  permissions: '644'
   content: |
     overlay
     br_netfilter
@@ -114,25 +114,22 @@ apt:
 
 Here, we introduce the two apt sources so we can retrieve the necessary packages.
 
-> There are alternate ways to [specify apt sources](https://blog.skillcadet.com/extras/cloud-init-by-keyserver.html) include the PGP keys directly.
+> There are alternate ways to [specify apt sources](https://blog.skillcadet.com/extras/cloud-init-by-keyserver.html) instead of including the PGP keys directly.
 
 ### Add required packages
 ```
-package-update: true
 packages:
   - curl
   - gnupg2
   - software-properties-common
   - apt-transport-https
-  - ca-certificate
+  - ca-certificates
   - containerd.io
   - kubeadm
   - kubelet
   - kubectl
   - fail2ban
 ```
-
-Technically, `package-update: true` doesn't need to be called as, the packages stanza means it will run automatically, it's included here for clarity and to make sure it's run AFTER we added our repositories.
 
 ### Fail2ban
 All the packages above are consistent with most tutorials, with the expection of [fail2ban](https://github.com/fail2ban/fail2ban). This is added since we need to have an SSH port open to manage our system.  
