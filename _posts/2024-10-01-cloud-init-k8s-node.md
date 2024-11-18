@@ -50,7 +50,17 @@ users:
     - ssh-rsa AAAAB3Nza......= troy@skillcadet
 ```
 
-Next, we want to address the admin user. We want to disable root ssh login, so we need a regular user with admin privileges. We also want to secure our communication channel with a public/private key instead of using passwords for login. 
+Next, we want to address the admin user. We want to disable root ssh login, so we need a regular user with admin privileges. We also want to secure our communication channel with a public/private key instead of using passwords for login.
+
+```
+  hashed_passwd: "$6$rounds=4096$/NM2KaSQ595tb74s$38kIiWZXh4MMpb95/0TdGAm.Wr7J9SMFnb.CSsxlsU0oE7pgkGcCs2JpJHDCuGXMNvVEmpU01SBONYmVxpAv8/"
+  lock_passwd: false
+  sudo: ALL=(ALL:ALL) ALL
+```
+
+You can, alternatively, replace the `sudo` stanza with the above triplet to enable password protected sudo. This isn't really ideal either, as providing a hash, even as strong as this, is very crackable if discovered, using a longer complex password could help. You can generate a hashed password with the following:
+
+> mkpasswd -m sha-512 -R 4096
 
 ### Create system files
 ```
