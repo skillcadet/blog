@@ -3,7 +3,7 @@ layout: post
 title: Starting an on-premise kubernetes cluster
 ---
 
-In this series of posts, we are building an on-premise kubernetes cluster. This is a manual configuartion as we presume no support for BGP in virtualized or non-enterprise networking. In the [first](https://blog.skillcadet.com/2024/10/01/cloud-init-k8s-node.html) and [second](/edge.html) posts we seeded our initial servers using the cloud-init framework.
+In this series of posts, we are building an on-premise kubernetes cluster. This is a manual configuartion as we presume no support for BGP in virtualized or non-enterprise networking. In the [first](https://blog.skillcadet.com/2024/10/01/cloud-init-k8s-node.html) post we seeded our initial servers using the cloud-init framework.
 
 Depending on your own infrastructure needs, you may need to provision the cluster before you get the IP Addresses necessary for /etc/hosts.
 
