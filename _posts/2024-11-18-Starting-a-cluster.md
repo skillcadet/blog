@@ -105,3 +105,5 @@ inode01     Ready    <none>          88s   v1.30.5   10.0.0.14   <none>        U
 
 And, after watching the pods intialize and come online, we can check our nodes again and see everything ready.
 
+---
+[Github Issues](https://github.com/skillcadet/blog/issues) - available for suggestions/corrections
