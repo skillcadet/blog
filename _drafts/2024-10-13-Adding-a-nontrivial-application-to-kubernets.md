@@ -97,7 +97,7 @@ spec:
                 - inode01
 ```
 
-For persistent storage on our cluster, we need to define a couple of PersistenVolumes. On node00, I added a 100GB disk mounted at /mnt/pv/disk1. Because the root of a mounted volume contains a lost+found directory, we need to create an empty folder or mysql will refuse to create a database. `sudo mkdir -p /mnt/pv/disk1/mysql`. We'll also create a pv folder for ghost on either node, even though we can only install ghost on one node at at time.
+For persistent storage on our cluster, we need to define a couple of PersistenVolumes. On node00, I added a 100GB disk mounted at /mnt/pv/disk1. Because the root of a mounted volume contains a lost+found directory, we need to create an empty folder or mysql will refuse to create a database. `sudo mkdir -p /mnt/pv/disk1/mysql`. We'll also create a pv folder for ghost on either node, even though we can only install ghost on one node at at time (unless we use a technology like [Rook.io](https://www.rook.io) that gives us ReadWriteMany volumes).
 
 02-local-pvc-mysql.yaml
 ```
