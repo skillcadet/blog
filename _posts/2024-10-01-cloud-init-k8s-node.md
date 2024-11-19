@@ -175,7 +175,7 @@ power_state:
 
 Finally, we reboot to clear things up and start with a fresh boot, ready for us to login and create the cluster.
 
-Coming soon, my tutorials on manually bringing up a cluster from this point and on connecting an external load balancer to a cluster nodeport.
+Next up, my tutorials on [manually bringing up a cluster](/2024/11/18/Starting-a-cluster.html) from this point and on connecting an external load balancer to a cluster nodeport.
 
 ---
 {% include gh-footer.md %}
