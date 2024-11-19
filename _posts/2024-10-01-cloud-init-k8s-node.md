@@ -178,4 +178,4 @@ Finally, we reboot to clear things up and start with a fresh boot, ready for us 
 Coming soon, my tutorials on manually bringing up a cluster from this point and on connecting an external load balancer to a cluster nodeport.
 
 ---
-[Github Issues](https://github.com/skillcadet/blog/issues) - available for suggestions/corrections
+{% include gh-footer.md %}
