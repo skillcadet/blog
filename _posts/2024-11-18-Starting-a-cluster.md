@@ -12,6 +12,7 @@ This series uses a public network and an internal private network, as my interna
 In this post, I will take one other shortcut. I'm using the master nodes ip address for the control plane endpoint. In production, I would setup another, internal load balancer pointing to my multiple control plane nodes. This tutorial DOES setup the cluster to be upgradeable to high availability by adding more nodes (something to be covered in a future post).
 
 ### Infrastructure
+
 | ip address | hostnames               |
 |------------|-------------------------|
 | 10.0.0.11  | xd7tower                |
@@ -28,11 +29,10 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --control-plane-endpoint "xd
 
 Let's break this down.  
 
-We're going to be using Calico which defaults to a pod network of 192.168.0.0/16, so we create the cluster that way.
-
-Control-plane-endpoint is something we can't add to the cluster after it's created, so we define it now using our /etc/hosts entry to make things work.
-Upload-certs is helpful if we're going to be adding more control plane nodes in the next few hours (We can always restart the join process to add nodes after this window has expired).
-Apiserver-advertise-address is set to the internal address of the node since we want to use the internal network and kubernetes will by default pick an address on the network interface with the default route.
+* We're going to be using Calico which defaults to a pod network of 192.168.0.0/16, so we create the cluster that way.
+* Control-plane-endpoint is something we can't add to the cluster after it's created, so we define it now using our /etc/hosts entry to make things work.
+* Upload-certs is helpful if we're going to be adding more control plane nodes in the next few hours (We can always restart the join process to add nodes after this window has expired).
+* Apiserver-advertise-address is set to the internal address of the node since we want to use the internal network and kubernetes will, by default, pick an address on the network interface with the default route instead of our internal ip's.
 
 ```
 Your Kubernetes control-plane has initialized successfully!
@@ -45,7 +45,7 @@ To start using your cluster, you need to run the following as a regular user:
 
 ```
 
-Next, we'll follow the instructions to clone the kubeconfig information to our local user. Through various means for port forwarding that will be addressed in another post, you can also clone the kubeconfig to your local machine to have remote access to `kubectl`.
+Next, we'll follow the instructions to clone the kubeconfig information to our hosts nonroot user. Through various means for ssh port forwarding that will be addressed in another post, you can also clone the kubeconfig to your local machine to have remote access to `kubectl`.
 
 ```
 ubuntu@imaster00:~$ kubectl get nodes -o wide
@@ -72,7 +72,7 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.2
 kubectl get pods -A -w
 ```
 
-We can monitor the network coming up as we see first the `calico-system` and then the `calico-apiserver` pods go through the phases until they reach `Running`. Hit `Control+C` to exit the watch.
+We can monitor the network coming up as we see first the `calico-system` and then the `calico-apiserver` pods go through the phases until they reach `Running`. Hit `Control+C` to exit the watch loop.
 
 ```
 ubuntu@imaster00:~$ kubectl get nodes
@@ -84,7 +84,7 @@ Now that networking is fully functional, we can see the initial node is in a rea
 
 ### More control plane nodes
 
-Now that we have configured networking, we can begin adding more nodes. We would start by adding more control plane nodes by using the `kubeadm join` command that adds control-plane and certificate-key parameters. We're not going to be adding additional control plane nodes in the tutorial.
+Now that we have configured networking, we can begin adding more nodes. We would start by adding more control plane nodes by using the `kubeadm join` command that includes control-plane and certificate-key parameters. We are not going to be adding additional control plane nodes in this tutorial.
 
 ## Worker Nodes
 
