@@ -3,11 +3,11 @@ layout: post
 title: Starting an on-premise kubernetes cluster
 ---
 
-In this series of posts, we are building an on-premise kubernetes cluster. This is a manual configuartion as we presume no support for BGP in virtualized or non-enterprise networking. In the [first](https://blog.skillcadet.com/2024/10/01/cloud-init-k8s-node.html) post we seeded our initial servers using the cloud-init framework.
+In this series of posts, we are building an on-premise kubernetes cluster. This is a manual configuartion as we presume no support for BGP in virtualized or non-enterprise networking. In the [first](https://blog.skillcadet.com/2024/10/01/cloud-init-k8s-node.html) post we seeded our initial servers using the cloud-init framework. In our [second](https://blog.skillcadet.com/2024/10/05/setup-a-bastion-server.html) post, we configured SSH access to our cluster nodes.
 
 Depending on your own infrastructure needs, you may need to provision the cluster before you get the IP Addresses necessary for /etc/hosts.
 
-This series uses a public network and an internal private network, as my internal network connections are 10GB and unmetered, which gives our inter-node communications a boost. For /etc/hosts, I used the internal ip addresses.  In practice, my nodes still need an external ip address to request packages/DNS/etc, but I have firewalled all inbound connections on the public networks and access the internal ip addresses using a bastion host that sits on both networks and lets ports 22/80/443 in. When I do this in production, my ssh interface is one of two nodes dedicated to cluster access and the 80/443 reverse proxies are seperate nodes without public ssh access.
+This series uses a public network and an internal private network, as my internal network connections are 10GB and unmetered, which gives our inter-node communications a boost. For /etc/hosts, I used the internal ip addresses.  In practice, my nodes still need an external ip address or default route to request packages/DNS/etc, but I have firewalled all inbound connections on the public networks and access the internal ip addresses using a bastion host that sits on both networks and lets ports 22/80/443 in. When I do this in production, my ssh interface is one of two nodes dedicated to cluster access and the 80/443 reverse proxies are seperate nodes without public ssh access.
 
 In this post, I will take one other shortcut. I'm using the master nodes ip address for the control plane endpoint. In production, I would setup another, internal load balancer pointing to my multiple control plane nodes. This tutorial DOES setup the cluster to be upgradeable to high availability by adding more nodes (something to be covered in a future post).
 
