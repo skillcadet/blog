@@ -84,7 +84,7 @@ Now that networking is fully functional, we can see the initial node is in a rea
 
 ### More control plane nodes
 
-Now that we have configured networking, we can begin adding more nodes. We would start by adding more control plane nodes by using the `kubeadm join` command that includes control-plane and certificate-key parameters. We are not going to be adding additional control plane nodes in this tutorial.
+Now that we have configured networking, we can begin adding more nodes. We would start by adding more control plane nodes by using the `kubeadm join` command that includes control-plane and certificate-key parameters. We are not going to be adding additional control plane nodes in this post.
 
 ## Worker Nodes
 
