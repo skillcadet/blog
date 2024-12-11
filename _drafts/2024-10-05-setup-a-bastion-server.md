@@ -31,39 +31,10 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '162.200.24.101' (ECDSA) to the list of known hosts.
 ```
 
-We'll need to approve the host fingerprint, which we often need to do blindly if we don't take the step of assigning the host keys in advance.
-
-### Privoxy config
-
-```
-echo "listen-address  10.7.222.11:8888" |sudo tee -a /etc/privoxy/config
-sudo service privoxy restart
-```
-
-Now we make one small change to privoxy. We will add a listener on the internal ip address. Then we restart privoxy to pick up the change.
-
-Later, in another post, we'll use NGINX as an external load balancer to our private cluster.
+We'll need to approve the host fingerprint, which we often need to do blindly unless we have a [secure console](https://blog.skillcadet.com/extras/verify-ssh-fingerprint.html) to the node/instance.
 
 
 ## Cluster provisioning
-
-This bastion host now allows us to launch an initial fleet of servers that are not directly accessable from the internet, significantly reducing the attack surface of our cluster.
-
-To accomplish this task, we need to define the proxy server configuration for the nodes. We'll do this by making two additions to our cloud-init.yaml.
-
-```
-runcmd:
-  - echo "http_proxy=http://10.7.222.11:8888/" >> /etc/environment
-  - echo "https_proxy=http://10.7.222.11:8888/" >> /etc/environment
-  - echo "HTTP_PROXY=http://10.7.222.11:8888/" >> /etc/environment
-  - echo "HTTPS_PROXY=http://10.7.222.11:8888/" >> /etc/environment
-apt:
-  http_proxy: http://10.7.222.11:8888/
-  https_proxy: http://10.7.222.11:8888/
-```
-
-These should be included prior to any cloud-init stanza's that invoke external assets/packages.
-
 
 Now, when we spin up our hosts, we'll be able to configure ssh to reach the hosts through the bastion server.
 
