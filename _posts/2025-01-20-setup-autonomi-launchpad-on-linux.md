@@ -25,7 +25,8 @@ Here, Launchpad will spin up worker nodes as your specified user.
 ## Storage location
 
 By default, Launchpad creates the node information in ~/.local/share/autonomi
-This has a side-effect that running nodes as sudo/root creates the nodes in /root/.local/share which the ant user does NOT have access to, and will crash when trying to run.
+
+:warning: This has a side-effect that running nodes as sudo/root creates the nodes in /root/.local/share which the ant user does NOT have access to, <span style="color:red">and will crash when trying to run</span>.
 
 The two launchpad solutions are:
 * run launchpad as a non-root user
