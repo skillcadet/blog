@@ -53,8 +53,6 @@ We update the system packages information, install the zip package and clean the
 
 ```
 unzip node-launchpad-0.5.3-x86_64-unknown-linux-musl.zip
-Archive:  node-launchpad-0.5.3-x86_64-unknown-linux-musl.zip
-  inflating: node-launchpad
 ```
 
 Now we can unzip the launchpad and start it with `./node-launchpad`.
