@@ -43,9 +43,9 @@ wget https://node-launchpad.s3.eu-west-2.amazonaws.com/node-launchpad-0.5.3-x86_
 Login to your system, and pull down the client using wget.  If unzip is not installed by default, it is quick to grab...
 
 ```
-apt update
-apt -y install zip
-apt clean
+sudo apt update
+sudo apt -y install zip
+sudo apt clean
 ```
 
 We update the system packages information, install the zip package and clean the packages cache to save space.
