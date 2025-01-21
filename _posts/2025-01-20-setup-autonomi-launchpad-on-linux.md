@@ -60,12 +60,12 @@ Now we can unzip the launchpad and start it with `./node-launchpad`.
 
 ### Launchpad
 
-![Autonomi Launchpad Initial Status Screen](/blog/assets/images/autonomi/Launchpad_01.png)
+![Autonomi Launchpad Initial Status Screen](/assets/images/autonomi/Launchpad_01.png)
 
 This is our unconfigured Launchpad dashboard.
 As we make changes, we will automatically navigate back to the [S]tatus page. Use the [O] letter key to navigate to the Options screen.
 
-![Autonomi Launchpad Options Screen with defaults](/blog/assets/images/autonomi/Launchpad_02.png)
+![Autonomi Launchpad Options Screen with defaults](/assets/images/autonomi/Launchpad_02.png)
 
 This is the unconfigured Launchpad Options screen. From here we'll make changes to setup our nodes.
 
@@ -73,17 +73,17 @@ This is the unconfigured Launchpad Options screen. From here we'll make changes 
 
 As mentioned previously, your instance will by default store data in the ~/.local/share folder, which is usually located on the primary disk/partition. This may not be ideal as it's smart to have extra space for logs on the primary partition and to have our data mounted as a separate disk/partition.
 
-![Autonomi Launchpad Change Storage Option Screen](/blog/assets/images/autonomi/Launchpad_03.png)
+![Autonomi Launchpad Change Storage Option Screen](/assets/images/autonomi/Launchpad_03.png)
 
 To change the storage option, press [Control+D] and select the Drive.
 
-![Autonomi Launchpad Confirm Storage Change Screen](/blog/assets/images/autonomi/Launchpad_04.png)
+![Autonomi Launchpad Confirm Storage Change Screen](/assets/images/autonomi/Launchpad_04.png)
 
 As with most settings, changing the storage location will require any existing nodes to be reset. Press the 'Enter' key to continue.
 
 ### Network Connection Mode
 
-![Autonomi Launchpad Connection Options Screen](/blog/assets/images/autonomi/Launchpad_05.png)
+![Autonomi Launchpad Connection Options Screen](/assets/images/autonomi/Launchpad_05.png)
 Press the [Control+K] key.
 
 Beyond Automatic, there are three Connection Modes to access the network.
@@ -94,36 +94,36 @@ Beyond Automatic, there are three Connection Modes to access the network.
 
 I'm going to use Custom Ports in this example, which means that I have to map the firewall/router ports to my instance. (A topic not covered here as it's too broad to cover all the various routers available).
 
-![Autonomi Launchpad Custom Ports Screen](/blog/assets/images/autonomi/Launchpad_06.png)
+![Autonomi Launchpad Custom Ports Screen](/assets/images/autonomi/Launchpad_06.png)
 Here I've chosen port 50000 which selects the next 50 ports (the maximum that Launchpad allows).
 
-![Autonomi Launchpad Connection Change Confirmation Screen](/blog/assets/images/autonomi/Launchpad_07.png)
+![Autonomi Launchpad Connection Change Confirmation Screen](/assets/images/autonomi/Launchpad_07.png)
 
 Then we confirm the changes.
-![Autonomi Launchpad Port Forwarding Confirmation Screen](/blog/assets/images/autonomi/Launchpad_08.png)
+![Autonomi Launchpad Port Forwarding Confirmation Screen](/assets/images/autonomi/Launchpad_08.png)
 And here Launchpad alerts us to setup port forwarding from our router.
 
 ### Add your wallet
 
 Our rewards for storing content are paid on the blockchain, this requires us to have a valid address if we want to get paid.
 
-![Autonomi Launchpad Wallet Terms of Service Screen](/blog/assets/images/autonomi/Launchpad_09.png)
+![Autonomi Launchpad Wallet Terms of Service Screen](/assets/images/autonomi/Launchpad_09.png)
 Press the [Control+B] key.
 First up, we need to agree to the [Terms of Service](https://autonomi.com/beta/terms).
 
-![Autonomi Launchpad Wallet Configuration Screen](/blog/assets/images/autonomi/Launchpad_10.png)
+![Autonomi Launchpad Wallet Configuration Screen](/assets/images/autonomi/Launchpad_10.png)
 Then we enter a valid wallet address and continue with Enter.
 
 ### All Ready To Go
-![Autonomi Launchpad Configured Options Screen](/blog/assets/images/autonomi/Launchpad_11.png)
+![Autonomi Launchpad Configured Options Screen](/assets/images/autonomi/Launchpad_11.png)
 Now we can review our settings before we begin to launch nodes.
 
-![Autonomi Launchpad Configured Status Screen](/blog/assets/images/autonomi/Launchpad_12.png)
+![Autonomi Launchpad Configured Status Screen](/assets/images/autonomi/Launchpad_12.png)
 Press the [S] key to get back to the Status screen.
 
-![Autonomi Launchpad Manage Nodes Screen](/blog/assets/images/autonomi/Launchpad_13.png)
+![Autonomi Launchpad Manage Nodes Screen](/assets/images/autonomi/Launchpad_13.png)
 Press [Control+G] to begin manage nodes.  We'll start with 1 node, you can use the arrow keys to change the number of nodes to manage. Press the [Enter] key to confirm.
 
-![Autonomi Launchpad With_A_Launched_Node Screen](/blog/assets/images/autonomi/Launchpad_14.png)
+![Autonomi Launchpad With_A_Launched_Node Screen](/assets/images/autonomi/Launchpad_14.png)
 And finally we can see the node running in Launchpad.
 
