@@ -79,7 +79,7 @@ To change the storage option, press [Control+D] and select the Drive.
 
 ![Autonomi Launchpad Confirm Storage Change Screen](/assets/images/autonomi/Launchpad_04.png)
 
-As with most settings, changing the storage location will require any existing nodes to be reset. Press the 'Enter' key to continue.
+As with most settings, changing the storage location will require any existing nodes to be reset. Press the [Enter] key to continue.
 
 ### Network Connection Mode
 
@@ -109,10 +109,10 @@ Our rewards for storing content are paid on the blockchain, this requires us to 
 
 ![Autonomi Launchpad Wallet Terms of Service Screen](/assets/images/autonomi/Launchpad_09.png)
 Press the [Control+B] key.
-First up, we need to agree to the [Terms of Service](https://autonomi.com/beta/terms).
+First up, we need to agree to the [Terms of Service](https://autonomi.com/beta/terms) by pressing [Y].
 
 ![Autonomi Launchpad Wallet Configuration Screen](/assets/images/autonomi/Launchpad_10.png)
-Then we enter a valid wallet address and continue with Enter.
+Then we enter a valid wallet address and continue with [Enter].
 
 ### All Ready To Go
 ![Autonomi Launchpad Configured Options Screen](/assets/images/autonomi/Launchpad_11.png)
