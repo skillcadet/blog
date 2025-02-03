@@ -103,7 +103,7 @@ Following my normal steps, I created a check_hcapthca() function, set up a retur
 This showed me the new variable that was returned by the form.  I added a check to make sure that the captcha was provided or we fail right away.
 
 
-If the captcha is provided, we need to verify by making an API request to hcaptcha and getting confirmation that it's both valid and timely. This payload is quite large, so I don't have any filtering on it and it's a potential vector for buffer overflows and wasting resources. Something for the future if this lasts more than a week/proof-of-concept. Again, I start with the failure case hard coded, then add the API call, and if we get a success finally add the True status.
+If the captcha is provided, we need to verify by making an API request to hcaptcha and getting confirmation that it's both valid and timely. This payload is quite large, ~~so I don't have any filtering on it and it's a potential vector for buffer overflows and wasting resources. Something for the future if this lasts more than a week/proof-of-concept.~~ Again, I start with the failure case hard coded, then add the API call, and if we get a success finally add the True status.
 
 ### HTTPS/SSL Let's Encrypt
 
@@ -153,5 +153,10 @@ So, I pulled up a copy of the database I had cloned early in my testing and crea
 This could later be extended to allow the same wallet to request more than once with its own velocity (like once/week).
 
 
+### Limit upload content length
 
+Flask provides for a simple way to block unwanted data, MAX_CONTENT_LENGTH, which will return a 413 HTTP Response when exceeded.
 
+### Parameterize SQL
+
+A few of the queries were spiked with non-preferred syntax. I cleaned those up by parameterizing the statements.
