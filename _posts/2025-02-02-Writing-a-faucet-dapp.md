@@ -144,7 +144,7 @@ First, check_db() became too generic so was renamed to check_db_for_wallet(), an
 
 ## Restore test transactions
 
-It bugged me that I reset the database and lost the initial 'live' transactions. I initially chose that route so the testers could re-request a full faucet drip, but deleting the database was not the only option. T solution was something I already planned on, but didn't execute it initially to stay focused on getting things testable.
+It bugged me that I reset the database and lost the initial 'live' transactions. I initially chose that route so the testers could re-request a full faucet drip, but deleting the database was not the only option. The solution was something I already planned on, but didn't execute it initially to stay focused on getting things testable.
 
 
 So, I pulled up a copy of the database I had cloned early in my testing and created a Python list of transactions to re-insert.  Now I have a record of all the transactions that the faucet has succeeded with. But I didn't want the first users to be left out, which required one small change. In the query for existing transactions, I added TIME_HORIZON which is a unix timestamp of the last transaction from the test db, so only returns transactions newer than that horizon.
