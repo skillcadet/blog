@@ -113,7 +113,7 @@ I prefer [NGINX](https://nginx.org) as a web gateway which has support for [Let'
 I log into a server with a public IP address (and a private address on my internal network), create a nginx configuration for http://ant.xd7.org, test my nginx configuration and reload nginx. Then I add the public address to DNS and wait a few minutes for the update to be published before starting Certbot to create an HTTPS certificate for my domain.
 
 
-Now, I can change the upgraded configuration file to point to my flask backend, check and reload nginx and I can access the faucet at [https://ant.xd7.org](https://ant.xd7.org)!
+Now, I can change the upgraded configuration file to point to my Flask backend, check and reload nginx and I can access the faucet at [https://ant.xd7.org](https://ant.xd7.org)!
 
 ### Faucet Wallet
 
