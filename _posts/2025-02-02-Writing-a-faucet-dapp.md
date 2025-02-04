@@ -10,9 +10,13 @@ The following glossary attempts to make this clearer:
 * [Autonomi](https://www.autonomi.com) - Provides a decentralized storage network that allows you to pay once to permanently store and then retrieve information free of charge.
 * Faucet Dapp - Is a term used for a system that rewards users with free cryptocurrencies.
 
+
 In our use case, "Testing Autonomi" means to upload data to the network, which requires two separate cryptocurrencies:
 * ANT - Autonomi Network Token is the currency used to pay and reward nodes for uploading data.
 * ETH - Ethereum is another currency we must pay to use ANT (called gas).
+
+
+The code produced by this adventure can be found a [this repo](https://github.com/iweave/antfaucet)
 
 ## Autonomi Pre-launch
 
@@ -64,7 +68,7 @@ We'll add other validations before we get here, but one of the first things the 
 Next, we include the code up to the point that checks the token and ETH balances. This seems like a very reasonable checkpoint, let's return a result showing the amount of token and ETH using the False status to display the values.
 
 
-The sample code reported the chain ID of the token contract, we can use that as another validation that things are correctly configured. Add a header defining the chain ID and return a False status if the values don't match.
+The sample code reported the chain ID of the blockchain, we can use that as another validation that things are correctly configured. Add a header defining the chain ID and return a False status if the values don't match.
 
 
 Instead of the user entering the amount to transfer, we can wire that to a variable we set in the header. In case we have to iterate a lot, use a small value (I used 0.00000001 to start and incremented the value between runs so I could tell the transactions apart on the blockchain reporter).
@@ -144,7 +148,7 @@ First, check_db() became too generic so was renamed to check_db_for_wallet(), an
 
 ## Restore test transactions
 
-It bugged me that I reset the database and lost the initial 'live' transactions. I initially chose that route so the testers could re-request a full faucet drip, but deleting the database was not the only option. The solution was something I already planned on, but didn't execute it initially to stay focused on getting things testable.
+It bugged me that I reset the database and lost the initial 'live' transactions. I initially chose that route so the testers could re-request a full faucet drip, but deleting the database was not the only option. The solution was something I already planned on, but didn't execute initially to stay focused on getting things testable.
 
 
 So, I pulled up a copy of the database I had cloned early in my testing and created a Python list of transactions to re-insert.  Now I have a record of all the transactions that the faucet has succeeded with. But I didn't want the first users to be left out, which required one small change. In the query for existing transactions, I added TIME_HORIZON which is a unix timestamp of the last transaction from the test db, so only returns transactions newer than that horizon.
