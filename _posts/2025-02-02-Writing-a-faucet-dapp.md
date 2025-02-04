@@ -16,7 +16,7 @@ In our use case, "Testing Autonomi" means to upload data to the network, which r
 * ETH - Ethereum is another currency we must pay to use ANT (called gas).
 
 
-The code produced by this adventure can be found a [this repo](https://github.com/iweave/antfaucet)
+The code produced by this adventure can be found at [this repo](https://github.com/iweave/antfaucet)
 
 ## Autonomi Pre-launch
 
