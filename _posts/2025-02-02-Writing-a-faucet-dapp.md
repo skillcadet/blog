@@ -133,9 +133,9 @@ I know that the built-in web server for Flask is not production ready (besides, 
 
 ## We're live!
 
-But are we finished? Not one to leave a good thing alone, I wanted to check the faucets from my phone. But I don't want to impact the live instance, so I create a second server on a different port and set up another NGINX reverse proxy to activate the new internal node.
+But are we finished? Not one to leave a good thing alone, I wanted to check the faucets from my phone. But I don't want to impact the live instance with my testing, so I create a development server on a different port and set up another NGINX reverse proxy to activate the new internal node.
 
-## success/Drips
+## Success/Drips
 
 The success endpoint was pretty simple, it just counts the number of records (minus the initial test record) and displays it onscreen. The only difficult part was I had already used the 'success.html' template filename, so I renamed the endpoint from /success to /drips.  The next day, I used CSS to increase the font size to very large, so it renders visibly on a smartphone.
 
