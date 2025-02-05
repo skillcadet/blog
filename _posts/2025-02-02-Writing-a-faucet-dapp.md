@@ -20,7 +20,7 @@ The code produced by this adventure can be found at [this repo](https://github.c
 
 ## Autonomi Pre-launch
 
-As of this writing, the Real token has not launched (target is soon, Feb 6, 2025), so the only way to gain ANT has been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
+As of this writing, the Real token has not launched (target is soon, Feb ~~6~~11, 2025), so the only way to gain ANT has been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
 
 
 To allow users to more quickly and easily test uploads, we needed a simple way to grant test tokens that have already been earned for others to use. After a discord member suggested that there be a faucet, I thought, "I can learn something even if I don't succeed. I'll give it a try!"
