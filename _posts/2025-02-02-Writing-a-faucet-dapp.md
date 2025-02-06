@@ -170,3 +170,11 @@ A few of the queries were spiked with non-preferred syntax. I cleaned those up b
 A feature I see in some dapps, is the ability to connect to a MetaMask wallet.  Digging around I discovered [this](https://github.com/RishabKattimani/MetaMaskWebApp) 3 year old example, which showed a very simple solution.
 
 After getting the wallet address to auto-populate the form, I extended the code to turn the input field in to a drop down list if more than wallet address is connected.
+
+### Favicon
+
+I am a little annoyed by the failed requests for the favicon.ico file, so I created a 'static' directoyr, uploaded a copy of my logo and set the image in the form header.
+
+### Now finished?
+
+There isn't a need to view transactions since they are all visible on the blockchain.  Extending the faucet to have allow multiplel drips doesn't fit in the current use, so MAYBE we're done... for now. :)
