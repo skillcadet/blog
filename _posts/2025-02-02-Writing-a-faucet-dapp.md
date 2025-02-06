@@ -100,7 +100,7 @@ And finally, I created the add_db() function to add transactions to the database
 
 ### hcaptcha
 
-Now it's all fine and good to develop on a local computer, but eventually we want others to test our creation, but I am running a little server that I don't want a thundering herd by someone writing a script to drain the faucet's wallet.  To protect the 'expensive' database calls and other complex processing, I want to protect the input form. Some search for a privacy-compliant option found me [hcaptcha](https://www.hcaptcha.com/), which required very little to set up. I had to register for the free service, create an endpoint, and add some JavaScript and a `<div>` tag to my web form template file. Hcaptcha also requires to be served from an HTTPS web page, so I had to set up that (described briefly below).
+Now it's all fine and good to develop on a local computer, eventually we want others to test our creation, but I am running a little server that I don't want a thundering herd by someone writing a script to drain the faucet's wallet.  To protect the 'expensive' database calls and other complex processing, I want to protect the input form. Some search for a privacy-compliant option found me [hcaptcha](https://www.hcaptcha.com/), which required very little to set up. I had to register for the free service, create an endpoint, and add some JavaScript and a `<div>` tag to my web form template file. Hcaptcha also requires to be served from an HTTPS web page, so I had to set up that (described briefly below).
 
 
 Following my normal steps, I created a check_hcapthca() function, set up a return False and a reason of the captcha failed, added the new function to validate_request.
