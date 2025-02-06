@@ -173,7 +173,7 @@ After getting the wallet address to auto-populate the form, I extended the code 
 
 ### Favicon
 
-I am a little annoyed by the failed requests for the favicon.ico file, so I created a 'static' directoyr, uploaded a copy of my logo and set the image in the form header.
+I am a little annoyed by the failed requests for the favicon.ico file, so I created a 'static' directory, uploaded a copy of my logo and set the image in the form header.
 
 ### Now finished?
 
