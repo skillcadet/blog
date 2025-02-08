@@ -178,3 +178,7 @@ I am a little annoyed by the failed requests for the favicon.ico file, so I crea
 ### Now finished?
 
 There isn't a need to view transactions since they are all visible on the blockchain.  Extending the faucet to have allow multiple drips doesn't fit in the current use, so MAYBE we're done... for now. :)
+
+### Donate Button!
+
+I added the wallet address to the page, with a button to copy the address to your clipboard.
