@@ -182,3 +182,11 @@ There isn't a need to view transactions since they are all visible on the blockc
 ### Donate Button!
 
 I added the wallet address to the page, with a button to copy the address to your clipboard.
+
+### Adding transaction information
+
+I accidentally committed some testing harness when bringing code from the dev environment, which created non-existent transactions while validating the live faucet. To make that transparent, I'm now adding the hash for both transactions.
+
+If we detect that the test harness is active, record 0.0 for drip amounts since we didn't do an actual transaction.
+
+In this step, I created a migration sql file and also updated the broken transactions to 0.0 eth/ant.
