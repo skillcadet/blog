@@ -38,7 +38,7 @@ The two launchpad solutions are:
 ### Getting the client
 
 ```
-wget https://node-launchpad.s3.eu-west-2.amazonaws.com/node-launchpad-0.5.3-x86_64-unknown-linux-musl.zip
+wget https://node-launchpad.s3.eu-west-2.amazonaws.com/node-launchpad-0.5.4-x86_64-unknown-linux-musl.zip
 ```
 
 Login to your system, and pull down the client using wget.  If unzip is not installed by default, it is quick to grab...
