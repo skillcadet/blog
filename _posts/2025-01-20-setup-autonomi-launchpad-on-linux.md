@@ -121,7 +121,7 @@ Now we can review our settings before we begin to launch nodes.
 Press the [S] key to get back to the Status screen.
 
 ![Autonomi Launchpad Manage Nodes Screen](/assets/images/autonomi/Launchpad_13.png)
-Press [Control+G] to begin manage nodes.  We'll start with 1 node, you can use the arrow keys to change the number of nodes to manage. Press the [Enter] key to confirm.
+Press [Control+G] to begin manage nodes.  We'll start with 1 node, you can use the arrow keys to change the total number of nodes to manage. Press the [Enter] key to confirm.
 
 ![Autonomi Launchpad With_A_Launched_Node Screen](/assets/images/autonomi/Launchpad_14.png)
 And finally we can see the node running in Launchpad.
