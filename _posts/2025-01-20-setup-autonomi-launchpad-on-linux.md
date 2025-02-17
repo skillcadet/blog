@@ -52,7 +52,7 @@ sudo apt clean
 We update the system packages information, install the zip package and clean the packages cache to save space.
 
 ```
-unzip node-launchpad-0.5.3-x86_64-unknown-linux-musl.zip
+unzip node-launchpad-0.5.4-x86_64-unknown-linux-musl.zip
 ```
 
 Now we can unzip the launchpad and start it with `./node-launchpad`.
