@@ -7,7 +7,7 @@ title: Setup Autonomi Launchpad On Linux (Ubuntu 24.04)
 
 You will need the following:
 * Current [Autonomi](https://www.autonomi.com) link of [Launchpad](https://docs.autonomi.com/getting-started) for Linux (Intel or ARM)
-* An Arbitrum (currently Sepolia) Wallet address. [MetaMask example here](https://docs.autonomi.com/getting-started/support/how-to-guides/add-the-network-to-your-wallet)
+* An Arbitrum One Wallet address. [MetaMask example here](https://docs.autonomi.com/getting-started/support/how-to-guides/add-the-network-to-your-wallet)
 * 35GB storage/node
 
 ## User choice
