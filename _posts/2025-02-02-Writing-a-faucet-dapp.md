@@ -18,12 +18,12 @@ In our use case, "Testing Autonomi" means to upload data to the network, which r
 
 The code produced by this adventure can be found at [this repo](https://github.com/iweave/antfaucet)
 
-## Autonomi Pre-launch
+## Autonomi ~~Pre~~Post-launch
 
-As of this writing, the Real token has not launched (target is soon, Feb ~~6~~11, 2025), so the only way to gain ANT has been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
+When this project started, the Real token had not launched (Feb ~~6~~~~11~~14, 2025), so the only way to gain ANT had been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
 
 
-To allow users to more quickly and easily test uploads, we needed a simple way to grant test tokens that have already been earned for others to use. After a discord member suggested that there be a faucet, I thought, "I can learn something even if I don't succeed. I'll give it a try!"
+To allow users to more quickly and easily test uploads, we needed a simple way to grant ~~test~~ tokens that have already been earned for others to use. After a discord member suggested that there be a faucet, I thought, "I can learn something even if I don't succeed. I'll give it a try!"
 
 ## The setup
 
@@ -190,3 +190,33 @@ I accidentally committed some testing harness when bringing code from the dev en
 If we detect that the test harness is active, record 0.0 for drip amounts since we didn't do an actual transaction.
 
 In this step, I created a migration sql file and also updated the broken transactions to 0.0 eth/ant.
+
+## Switching to the Mainnet!
+
+Ok, on February 14th, 2025, the real ANT token launched on the Arbitrum One network. In theory this is simple. 
+
+* Change the network endpoint
+* Change the network chain id
+* Change the token contract to the live token
+* Create a new wallet
+* Fund the wallet
+* Connect the new wallet
+* Set new Drip rates
+* Change the wallet donate address on the input form
+
+All of which went swimmingly, however... transactions on the mainnet are confirming faster than the faucet issues them introducing a race condition on the nonce (serial number) of the second transaction.
+
+I solved the broken response by wrapping the transactions in try/except blocks and I also wait for the first transaction to fully complete before issuing the second one.
+
+Finally, I moved the ANT Token transaction first as we don't want to waste ETH if we had a problem with the ANT.
+
+### Announce in the forum
+
+We announced the faucet as live in the Autonomi forum, inviting people to either donate to or test the faucet.  Both occurred, which was how we discovered the nonce bug above.
+
+### Increase wallet field size
+
+Per a request in the forum, to help with people sending screenshots of the faucet, the width of the wallet field was increased to show the full wallet address.
+
+I also reintroduced the Metamask integration, with corrections to allow Metamask to return lowercase wallet addresses and still work correctly.
+
