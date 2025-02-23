@@ -220,3 +220,6 @@ Per a request in the forum, to help with people sending screenshots of the fauce
 
 I also reintroduced the Metamask integration, with corrections to allow Metamask to return lowercase wallet addresses and still work correctly.
 
+## Temporarily Halt Faucet
+
+Well, it didn't take long for the faucet to be abused (likely). However, I don't have time to work on solutions at the moment, so to save funds I'm pausing the faucet. Ugh.
