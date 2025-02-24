@@ -223,3 +223,12 @@ I also reintroduced the Metamask integration, with corrections to allow Metamask
 ## Temporarily Halt Faucet
 
 Well, it didn't take long for the faucet to be abused (likely). However, I don't have time to work on solutions at the moment, so to save funds I'm pausing the faucet. Ugh.
+
+### Add forum integration
+
+I received permission from the [Autonomi Community Forum](https://forum.autonomi.community/) to use the system as more user friction for people that want a drip.
+
+To receive a drip, they need to enter a forum name that is over 2 days old and generate a MD5 hash of their membername and a secret phrase.  Then they paste that hash as a reply to a specific forum topic, and copy the direct link to the post.  Finally, they come back to the form and add the forum post link to the form with their membername and wallet and submit to receive a drip.
+
+This may be enough friction to lift/increase the rate limit.
+
