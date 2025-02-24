@@ -232,3 +232,16 @@ To receive a drip, they need to enter a forum name that is over 2 days old and g
 
 This may be enough friction to lift/increase the rate limit.
 
+## Badges soft launch
+
+While integrating the forum validation, I announced that badges will be coming for wallets.  The first badge, `1st` just means you got a drip. Other badges I'm thinking of right now are:
+* New wallet
+* Old Wallet
+* Cold Wallet (received drip but no activity in first 30 days)
+* 1st upload
+* 2nd upload
+* 3rd upload (etc over first 30 days)
+* Theft (funds swept to another wallet)
+* Spare Change (returning funds too small to make an upload back to the faucet)
+* Grower (adds funds to own wallet after receiving a drip)
+* Patron (donates more in proceeds to faucet than dripped)
