@@ -25,7 +25,7 @@ I do know bash, but my hopes of are for a script that can also run continuously 
 
 Anm uses [whiptail](https://en.wikibooks.org/wiki/Bash_Shell_Scripting/Whiptail) as a means to create menus and gather input.
 
-Because my plans are for a status dashboard, I narrowed down my options for a TUI to [Textual](https://textual.textualize.io/)  The basic's went ok, but when I ran into problems with light documentation and little code examples to grok from (most links point to the various versions of Textual's documenation).
+Because my plans are for a status dashboard, I narrowed down my options for a TUI to [Textual](https://textual.textualize.io/)  The basic's went ok, but then I ran into problems with light documentation and little code examples to grok from (most links point to the various versions of Textual's documenation).
 
 So... for now, whiptail wins, onto the code!
 
