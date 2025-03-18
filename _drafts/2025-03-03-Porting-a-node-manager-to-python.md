@@ -121,7 +121,7 @@ I think I discover another broken issue with my nodes, some of the root director
 
 ### Restart Stopped Nodes
 
-Ok, I had to hold of working on AddNode until the upgrades were finished, adding a node is not allowed while upgrading is underway.
+Ok, I had to hold off working on AddNode until the upgrades were finished, adding a node is not allowed while upgrading is underway.
 
 Begin with stopped nodes, there are about 40 nodes that have been stopped for less than 2 days that could be revived.
 
