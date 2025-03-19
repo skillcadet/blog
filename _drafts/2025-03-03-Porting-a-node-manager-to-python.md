@@ -167,5 +167,11 @@ This means we want to run in cron. I've been testing with cron running for more 
 
 ### More load
 
-So, in addition to wnm itself being not super efficient in it's db/memory usage (relivant when more lots of nodes are in play), I found that the NTracking system is part of what is causing havoc on my system every 20 minutes. I suspect it's at least the system hit from crawling and grepping all the node data, but it could also be the resulting influxdb insertions and grafana ingestion.  This points to using a centralized NTracking server and splitting the updates to 'overall statistics' like wallet balance, coin price, etc to one script and something else that gathers the node metrics from each server. Perhaps wnm itself can do the reporting since we already gather most of this data for choosing actions. 
+So, in addition to wnm itself being not super efficient in it's db/memory usage (relivant when more lots of nodes are in play), I found that the NTracking system maybe part of what is causing havoc on my system every 20 minutes. I suspect it's at least the system hit from crawling and grepping all the node data, but it could also be the resulting influxdb insertions and grafana ingestion.  This points to using a centralized NTracking server and splitting the updates to 'overall statistics' like wallet balance, coin price, etc to one script and something else that gathers the node metrics from each server. Perhaps wnm itself can do the reporting since we already gather most of this data for choosing actions. 
+
+### Over Node count
+
+I went to reduce node count and discovered that wnm only stops extra nodes, where I probably want to remove them if we're changing the node count. So I make two changes, first to trigger remove if TotalNodes is over NodeCap and again in the check for HD Pressure in the Remove path.
+
+The second change is to not trigger Remove if we're in the middle of an upgrade (like we already do Restart), so that the spike in metrics we might get from an upgrade even out before needing to know if removal is necessary.
 
