@@ -175,3 +175,92 @@ I went to reduce node count and discovered that wnm only stops extra nodes, wher
 
 The second change is to not trigger Remove if we're in the middle of an upgrade (like we already do Restart), so that the spike in metrics we might get from an upgrade even out before needing to know if removal is necessary.
 
+## Packaging
+
+I now have a deployed version of the code, running on a cron on one of my servers.  There was a little work involved in getting the clone working from the repo. Some of the manual steps are because I wanted to share the colony database between the cron version and the version I'm working on.
+
+To deploy to a new server, there really should be a packaged version that can be deployed with a self installing bash script.  So let's get started.
+
+I know this is a big topic, with heavy opinions, AND there are lot of out dated examples, so I bit the bullet and purchased [Publishing Python Packages](https://pypackages.com/). It's a few years old, but seems to have all the issues I'll need tied together in a cohesive place.
+
+Time to read.  First, there are a few packages to install, setup of some metadata and then a run the first build... Which produced a package with only metadata contents. 
+
+...screech, the current version of the tools do not include my code in the distributions. It seems that the 'upcoming' 2025 updates are not yet published.  So, sigh.
+
+Pyproject.toml were suggested as the future of Python distribution, so I go [here](https://realpython.com/python-pyproject-toml/) which allows me to figure out the current syntax for the configuration file.
+
+Now my built packages actually include the code for my modules.
+
+### Installing
+
+Now that I have a package, let's install it (as editable so I can keep iterating). I begin with calling the program as a python module, which now works.  Then I create what's called an entrypoint that allows me to simply use 'wnm' as a command.
+
+### Pypi
+
+The initial reason I choose the Publishing Python Packages book was it was going to go into distributing the package on Pypi, a package repository for Python.  Luckily the Pyproject documentation goes over pushing my package first to TestPyPi and then to PyPi.
+
+### A new server
+
+Ok, this works on the dev server. How do we setup a fresh installtion on a new machine.
+
+In preparation of this day, back when I first started this codebase, I spun up three little servers and used a default anm installation to spin up nodes to a new wallet. Together, they are not even earning 1 ant/day, but others are reporting no earnings with 200 nodes, so I'm doing better than some. I then discover that two of the three servers do not have firewall ports open for the nodes, so unless they default to relay mode (which I don't think they do), these have not been earning for the last three weeks. Rather than letting all 100 nodes connect to the network for the first time at once, I just reset the servers and let anm run until I have at least three nodes to take over.
+
+I want to install into a virtual python environment, so before I can do anything else, I need to install python3-venv. Then I can initialize and activate the environment so everything that gets installed stays local. I also needed to install python3-dotenv before I could import the dotenv package.
+
+My first installation attempts with TestPyPi fail because I have the package name for dotenv incorrect. This makes me learn how to purge pip installed packages to clear out the broken installation. I also have to remove the broken package from TestPyPi or it keeps getting installed along with the current (also broken) package.
+
+My current gatcha, no one created a json-fix package in TestPyPi.  I don't think I want to go through the headache of publishing json-fix myself, so I push the current version of wnm to the live PyPi site. Now I can confirm that installation succeeds!
+
+Oops, I've never tested the code to remove the anm cron. But I also figure out how to use the Live PyPi site as a fallback when using TestPyPi as a primary source, so I can stop iterating on the PyPi site.
+
+Ok, wnm properly disabled anm and ingested the cluster. Create a cron entry and, voila, we have a new wnm node.
+
+### black
+
+One of the tools recommended for my project was [black](https://github.com/psf/black), a code formatter.  I hope this to be a long lived project, so I process my modules to check how inconsistently I've done.
+
+I know that I dislike Python mostly because whitespace affects the execution of your code and I prefer to use whitespace more liberally than allowed.  I also tend to use single quotes for constant strings as other languages I have used have better performance when using single quoted strings.
+
+I don't like the way black treats comprehensions or how black ends the indentation on multiline expressions.  There are a couple sections that are harder to follow being expanded by black, but otherwise I'm onboard with the changes.
+
+### isort
+
+The final tool recommended, [isort](https://pycqa.github.io/isort/), this simply reorders the import packages sections of code files, splitting the imports into groups by category and then alphabetically. `isort` also supports `black` formatting, so it splits long lists of imports into a multiline list.
+
+### src
+
+I had followed other advice I can't locate now, that recommended putting your modules in a module directory instead of a `src` directory, but I now think that ambiguously meant `src/module` instead of just `module`. Let's see what happens if we just push those all down a level (so we can separate out `test` paths later). This should require updating the path to search in the pyproject.toml file.  There was one code change (beyond the reformatting that happened with black/isort and moving the paths), so we'll update the version number.  Building the package, I still see the source path in the distribution tar.
+
+Pushing to TestPyPi, I can test doing an upgrade with pip install of my package and things look like they are working. Just to be on the safe side, I clear the pip cache and uninstall wnm before installing again and confirming things are working.
+
+## Configuration
+
+Ok. I've put this off as long as necessary. Creating a new cluster from scratch means we need to collect a bunch of information from the user.  But before that, we have a migrated cluster to manage with the same options.
+
+Right now, the only way to make changes to a live cluster are to update the sqlite database with new values. Obviously, that is not ideal.
+
+The lowest hanging fruit is what already exists with dotenv. I can use the .env file, and/or I can create a regular file that contains the settings to update.
+
+Start with a new function update_machine() that will go over all the settings, see if a settings is defined, verify that the value is the same or the function will update the settings before making choices about the server.
+
+### ConfigArgParse
+
+There were lots of complex options to getting configuration working (various file formats, modules, etc), but I choose to go with [configargparse](https://github.com/bw2/ConfigArgParse) to have fine control over precedence.
+
+This turned out to be quite verbose codewise, but I can now derive configuration from defaults, config files, environment variables, or command line options (in that order).
+
+### Merge
+
+I built the config module in isolation, then began the long slog of making the spike version of wnm integrate with the config module.
+
+This took weeks and involved refactoring to a utils.py and common.py.
+
+### Upgrade degrading performance
+
+Around this time there was a new release (3.0.9) of the antnode binary, so I updated the server's base location and let the system roll those changes to the colony.
+
+Then things started to go awry. The new version uses 30% more resources than that previous versions, causing the system to go over it's resource limit and stop, but not remove nodes because the system is not having disk pressure.
+
+The first step was to lower the nodecap to get to a reasonable amount of nodes. This required dropping from 200 to 130.  This allowed the remaining nodes to upgrade.
+
+Later, I changed the remove node logic to trim nodes instead of stop them if we're hitting spikes during an upgrade.
