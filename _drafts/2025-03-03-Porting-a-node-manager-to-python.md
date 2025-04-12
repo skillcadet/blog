@@ -263,4 +263,4 @@ Then things started to go awry. The new version uses 30% more resources than tha
 
 The first step was to lower the nodecap to get to a reasonable amount of nodes. This required dropping from 200 to 130.  This allowed the remaining nodes to upgrade.
 
-Later, I changed the remove node logic to trim nodes instead of stop them if we're hitting spikes during an upgrade.
+Later, I changed the remove node logic to trim nodes instead of stop them if we're hitting spikes during an upgrade. And then made that less aggressive by only trimming more nodes if there are no RemoveNode events running. (Disk pressure and NodeCap limits are still aggressive)
