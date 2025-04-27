@@ -56,3 +56,8 @@ My prototype scenario includes only FIFO (First-In/First-Out), which will be the
 
 On April 22, 2025, I was notified that I was included in the first cohort and will be invited to create my project page using a google form. Huzzah!
 
+I've updated my project page with a placeholder image I generated with AI. In very short order, I need to mockup a more realistic page and try to make it look about the same way with photoshop. For now, I'm waiting to see the resulting page that is supposed to update regularly from the google sheet.
+
+### Course update
+
+Ok, back from the first module... I think I'll be able to figure out the Javascript, but where I'm feeling lost is CSS.  CSS is very flexible and I don't know the language of design in a way to apply it towards what I want (I don't know how to describe what I want in a consice way). I do appreciate how Svelte isolates CSS inside components, but I am going to have to take some styling lessons to make things look friendly.
