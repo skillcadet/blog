@@ -5,7 +5,7 @@ title: About Page
 
 ## Many names
 
-Offline and online, I have gone by many name.
+Offline and online, I have gone by many names.
 
 Until 2017, I went by `Garth`, my first name, and then I started going by my middle name `Troy`.
 
