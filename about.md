@@ -5,14 +5,14 @@ title: About Page
 
 ## Many names
 
-Offline and online, I have gone my many name.
+Offline and online, I have gone by many name.
 
 Until 2017, I went by `Garth`, my first name, and then I started going by my middle name `Troy`.
 
 Online, I've had many identities going back to 1985 as `darkstar`. At the moment, I'm primarily associated with the following:
 
 * Github: [@ambled](https://www.github.com/ambled)
-* Discord: [__xd7__](https://discord.com/users/_xd7_)
+* Discord: [\_xd7\_](https://discord.com/users/_xd7_)
 
 ## Projects
 
