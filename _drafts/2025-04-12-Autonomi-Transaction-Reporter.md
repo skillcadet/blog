@@ -61,3 +61,12 @@ I've updated my project page with a placeholder image I generated with AI. In ve
 ### Course update
 
 Ok, back from the first module... I think I'll be able to figure out the Javascript, but where I'm feeling lost is CSS.  CSS is very flexible and I don't know the language of design in a way to apply it towards what I want (I don't know how to describe what I want in a consice way). I do appreciate how Svelte isolates CSS inside components, but I am going to have to take some styling lessons to make things look friendly.
+
+### Javascript, The Hard Way
+I started module two, which is all typescript (I was warned the last two modules would be). Ok. Let's regroup.
+
+A recommended course I considered taking before was, Python The Hard Way, but I'm pivoting to Javascript for ATR.  Luckily, there is an Alpha version of the Javascript version of his course.
+
+I've seen in the discord that this course isn't complete, so ugh, maybe I overpaid for it? $50 is more than I could be paying. This course was started in 2022, and appears stalled. It actually seems like it will/would use Svelte, but it'll be pre-svelte5. The fundamentals should be mostly current, and I'm confident this course will leave me with plenty to still learn even if it was complete. If the book is a bust, unlikely, I have 30 days for a refund. I want this course to work well enough that I can share it with others.
+
+
