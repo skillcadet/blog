@@ -37,9 +37,9 @@ In 1998 I officially joined the startup world and a whirlwind of roles with comp
 
 In 2010, I turned off the lights of the Web Hosting business to focus on decentralized projects (Weave)
 
-In 2012, I launched the first Weave project, a node operator powered by Datafiniti. Sadly, Datafinity decomissioned the network in 2014.
+In 2012, I launched the first Weave project, a node operator powered by Datafiniti. Sadly, Datafinity decomissioned the network in 2014 just as my next module, a browser extension called xdconsole that monitored the node operator, was released.
 
-Around this time, the way I had been treating engineering/operations with agile kinds of communication became formalized into a concept called DevOps.  I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
+Around this time, the way I had been treating engineering/operations with agile kinds of communication became formalized into a concept called DevOps.  Over the next decade I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
 
 But, I just wanted this all to work, so now I get to focus back on the Dev side of DevOps.
 
