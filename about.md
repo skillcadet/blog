@@ -39,7 +39,7 @@ In 2010, I turned off the lights of the Web Hosting business to focus on decentr
 
 In 2012, I launched the first Weave project, a node operator powered by Datafiniti. Sadly, Datafinity decomissioned the network in 2014.
 
-Around this time, the way I had been treating engeering/operations with agile kinds of communication became formalized into a concept called DevOps.  I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
+Around this time, the way I had been treating engineering/operations with agile kinds of communication became formalized into a concept called DevOps.  I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
 
 But, I just wanted this all to work, so now I get to focus back on the Dev side of DevOps.
 
