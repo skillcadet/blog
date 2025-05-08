@@ -14,7 +14,7 @@ Online, I've had many identities going back to 1985 as `darkstar`. At the moment
 
 Offline, I went by `Garth`, my first name, up until 2017 when I started using `Troy`, my middle name. I also respond to and create art as `Dawn`.
 
-## Projects
+## Recent Projects
 
 I have recently been donating my resources to [Autonomi](https://autonomi.com), a decentralized storage solution I have been following since 2012.
 
