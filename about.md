@@ -12,7 +12,7 @@ Online, I've had many identities going back to 1985 as `darkstar`. At the moment
 * Github: [@ambled](https://www.github.com/ambled)
 * Discord: [\_xd7\_](https://discord.com/users/_xd7_)
 
-Offline, I went by `Garth`, my first name, up until 2017 when to `Troy`, my middle name. I also respond to and create art as `Dawn`.
+Offline, I went by `Garth`, my first name, up until 2017 when I started using `Troy`, my middle name. I also respond to and create art as `Dawn`.
 
 ## Projects
 
