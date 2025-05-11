@@ -11,7 +11,7 @@ Online, I've had many identities going back to 1985 as `darkstar`. At the moment
 
 * Github: [@ambled](https://www.github.com/ambled)
 * Discord: [\_xd7\_](https://discord.com/users/_xd7_)
-* There.com: [willidream](https://webapps.prod.there.com/profiles/profiles?AvatarName=willidream)
+* There.com: [willidream](https://webapps.prod.there.com/profiles/profiles?AvatarName=willidream&op=view)
 
 Offline, I went by `Garth`, my first name, up until 2017 when I started using `Troy`, my middle name. I also respond to and create art as `Dawn`.
 
