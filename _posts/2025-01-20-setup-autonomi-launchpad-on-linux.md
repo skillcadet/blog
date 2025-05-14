@@ -7,7 +7,7 @@ title: Setup Autonomi Launchpad On Linux (Ubuntu 24.04)
 
 You will need the following:
 * Current [Autonomi](https://www.autonomi.com) link of [Launchpad](https://docs.autonomi.com/getting-started) for Linux (Intel or ARM)
-* An Arbitrum One Wallet address. [MetaMask example here](https://docs.autonomi.com/getting-started/support/how-to-guides/add-the-network-to-your-wallet)
+* An Arbitrum One Wallet address. [MetaMask example here](https://docs.autonomi.com/ant/using-ant/holding/how-to-create-a-metamask-wallet)
 * 35GB storage/node
 
 ## User choice
@@ -38,7 +38,7 @@ The two launchpad solutions are:
 ### Getting the client
 
 ```
-wget https://node-launchpad.s3.eu-west-2.amazonaws.com/node-launchpad-0.5.4-x86_64-unknown-linux-musl.zip
+wget https://node-launchpad.s3.eu-west-2.amazonaws.com/node-launchpad-0.5.8-x86_64-unknown-linux-musl.zip
 ```
 
 Login to your system, and pull down the client using wget.  If unzip is not installed by default, it is quick to grab...
