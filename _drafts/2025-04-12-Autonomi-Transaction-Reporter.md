@@ -69,4 +69,11 @@ A recommended course I considered taking before was, Python The Hard Way, but I'
 
 I've seen in the discord that this course isn't complete, so ugh, maybe I overpaid for it? $50 is more than I could be paying. This course was started in 2022, and appears stalled. It actually seems like it will/would use Svelte, but it'll be pre-svelte5. The fundamentals should be mostly current, and I'm confident this course will leave me with plenty to still learn even if it was complete. If the book is a bust, unlikely, I have 30 days for a refund. I want this course to work well enough that I can share it with others.
 
+### ~~Im~~possible Futures Update
+
+After 2 days with no votes, I created a forum post and a X tweet and woke up the next morning to being in first place. :)  This ranking lasted for 2 days, although the way the votes were cast likely disqualified me from winning. Luckily, I planned on finishing this anyway, I just needed the reward money to pay for the crypto tax consultant.  I've not given up hope, but there are a lot of good projects competing. I survived another day before being pushed out of the top 12 leaders.
+
+Well, the day has arrived and while ATR took first place in the rankings, the way the rules are interpreted means that ATR was disqualified from proceeding to the next round.  At least I have no pressure to launch mid July. Unfortunately there is some unrest in how ATR vote transactions were refunded.
+
+I have run out of content for Javascript the Hard Way, doh. Back to the Svelte 5 Typescript course. Onward and forward.
 
