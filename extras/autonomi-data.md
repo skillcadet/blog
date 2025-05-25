@@ -22,6 +22,7 @@ dawn/thatface.jpg
 * Total cost: 44709598875 AttoTokens
 
 dawn/lions-chair-back.jpg
+* xor: 6a6506d9cfbed5aabf7eeb441b07e14a4e4d39beb65935e48674428bae6c74cd
 * arc: c90def5d080edb971267645f6b22fa93dcd4f5ec9bbbd8ffb7dcee00010583f2
 * Total cost: 55886771151 AttoTokens
 
@@ -30,7 +31,20 @@ dawn/lions-chair-front.jpg
 * arc: 63059aabaa28fb168ee45598a4540fb560e6f11df5e53a9dfac39fa413147310
 * Total cost: 59612798500 AttoTokens
 
+dawn/20250524_223542.mp4 - Dragon Capsule re-entry video
+* xor: 1322d5f10a6218f6db2c9602b695c4e5ad7982f34d414b15f2019f42c6965923
+* arc: a8fe9929f861cf4212197ed850d01b8034e1a521665ac6bb14a791f4da56276b
+* Total cost: 883374361824 AttoTokens
 
+dawn/venus_transit.jpg
+* xor: 6f431ba68b144ce9e12c262e5d8078e7b2959a8a5077b295ff18e0dfbe7099e9
+* arc: b9681387e1695bfb3ac1d73be5235db6bd852ef2b071e853ec19911928b12095
+* Total cost: 357894936530 AttoTokens
+
+dawn/moon_transit.jpg
+* xor: 28516dc9b444db54fd4de9bb99334337322ab4382c1b3231596b9f666fb91a6f
+* arc: 1215a9a77405e11e3197239a509acc557f67b0e35b62e22643f67dce94b430a2
+* Total cost: 313094115462 AttoTokens
 
 ## Data
 
