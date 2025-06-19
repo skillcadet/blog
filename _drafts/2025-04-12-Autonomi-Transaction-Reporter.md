@@ -77,3 +77,36 @@ Well, the day has arrived and while ATR took first place in the rankings, the wa
 
 I have run out of content for Javascript the Hard Way, doh. Back to the Svelte 5 Typescript course. Onward and forward.
 
+Ok, I have decided that the pressure of releasing something by the July deadline is still 'soft on'.  I still have my CyberSecurity program underweigh, so I have to stay on top of that as well.
+
+### Another course
+
+Aiming for something between JSTHW and the Udemy Course, I found [FullStackSvelteKit](https://fullstacksveltekit.com/) which supposedly could hit the hot spot. Unfortunately, there was no course at the end up paying, just an invoice. I can't send DM's to the X account listed and an email dispatched late last night has netted no response. I'm feeling very let down.
+
+A few days later I was able to reach the author, who said he was going to fix the course, but it still doesn't work over a week later. I requested a refund.
+
+### Typescript
+
+Throughout this journey, I've encountered Typescript, so I took a couple of days to read the Typescript handbook...I hope I get this eventually.
+
+### Forging on
+
+I started a new Svelte5 project to play with, but then I started with just writing node code to read the balance of a wallet. This took a few iterations and restarts, but I ended up with a hard coded wallet reporting three tokens from the Aribtirum One blockchain.
+
+Ok, I need a route that will run code. Even though I built a submission form, I started with a simpler implementation where I have a route where the wallet address is a parameter.
+
+First I need to render some text to the screen. Check. Now, stepping up, I want data from +page.server.ts (the planned location for the server function call) to render on the wallet route page. After some fiddling around, I render both a static response and the wallet parememter as objects that I can expose in the console. And then I can render the backend content in +page.svelte.
+
+Finally, I integrate the node.js code for reading the wallet balance into the backend script.
+
+### Data models
+
+Ok, I can read data (although, Alchemy currently has a bug where I can't currently see ETH balances, so I may have to revisit this shortly), so I need someplace to stick it.
+
+I launched this project with drizzle/sqlite3, which is a database environment, so I have to define the data schema before I can start to save data.
+
+I need three initial tables to collect the source information. There are the individual transactions for each wallet, associated pricing information for tokens at each transaction time, and gas fees for some transactions. There will also be table(s) associated with the ledger that these transactions are used to build. This ultimately is used to generate the capital gain/loss.
+
+### BigNumber
+
+Uh Oh. The precision of the numbers used in crypto (18 decimal places) are bigger than Javascript will handle. I'm going to have to try to solve this with bignumber.js, or I may have to see if Python can handle the numbers on the backend and just use Svelte/Javascript as a presentation layer (displaying large numbers as strings).
