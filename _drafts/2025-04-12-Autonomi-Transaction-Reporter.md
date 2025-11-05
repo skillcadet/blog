@@ -110,3 +110,43 @@ I need three initial tables to collect the source information. There are the ind
 ### BigNumber
 
 Uh Oh. The precision of the numbers used in crypto (18 decimal places) are bigger than Javascript will handle. I'm going to have to try to solve this with bignumber.js, or I may have to see if Python can handle the numbers on the backend and just use Svelte/Javascript as a presentation layer (displaying large numbers as strings).
+
+### Claude
+
+After a lot of encouragement, I decided to try to pair with AI. This primarily consisted of generating a prompt/session and copy/pasting the code into my IDE where I studied the results with syntax highlighting.
+
+My first attempt got surprisingly far, but outgrowing the resources of my $20 trial account.
+
+As the iterated code all counts as input tokens, begin each additional attempt by condensing the requirements from the previous attempts into a new prompt.
+
+Finally, I paid for claude pro so I can integrate cluade directly with my IDE and I am able to make faster progress.
+
+### MVP
+
+Ok, I wrangle together a surprising amount of utility.
+
+When the service launches, the settings panel appears, to accept API keys that the app needs to populate it's databases.
+
+Then the user inputs a list of named wallets to scan on one panel.
+
+A further configuration panel can input a list of addresses that can be configured for classification (like a wallet that is generating emissions) so we can automatically tag known transaction types.
+
+Next, the service will download all the transactions from the configured wallets, perform known tagging and download the associated token price information for the periods of each transaction.
+
+Finally, the transactions panel allows us to browse and sort the database.
+
+#### Packaging
+
+So, I've been running locally on my mac, but it's been intended to be a docker container.
+
+I build a linux image and install my project inside and push the final to Docker hub, then announce the deployment in the forum and discord.
+
+### Crickets
+
+Well, I only pulled the image three times for testing, so there have been actually 5 other pulls.
+
+I thought I was only going to get 1.
+
+However, there has been no feedback in over a month, so I'll put this project on the back burner and work on weave node manager while I rethink how to approach this problem.
+
+

@@ -264,3 +264,102 @@ Then things started to go awry. The new version uses 30% more resources than tha
 The first step was to lower the nodecap to get to a reasonable amount of nodes. This required dropping from 200 to 130.  This allowed the remaining nodes to upgrade.
 
 Later, I changed the remove node logic to trim nodes instead of stop them if we're hitting spikes during an upgrade. And then made that less aggressive by only trimming more nodes if there are no RemoveNode events running. (Disk pressure and NodeCap limits are still aggressive)
+
+## Claude - October 2025
+
+I toyed around a little with Claude in a new project to learn something on how it works. Let's try to step our speed up here with a little cash.
+
+Oops. Things went fast with Claude, and I didn't keep this blog up to date while it was happening.
+
+I may come back some day and rehash the tale using the commit logs to remember the timeline.
+
+I started with building a CLAUDE.md in the code repo and then importing and analyize the code base. I then instructed a few changes I wanted to make and built a plan that incorporated some suggestions from Cluade's review.
+
+### Tests
+
+Ok, first up, generate tests so we know if something breaks.  This is a little complicated, because I'm on a mac and I don't yet support OSX as a node management environment. I did discuss that as a target, but that I want to start by getting tests to work in a linux docker container before getting the project to work on a mac.
+
+This is a little tricky as this won't actually start a node, since there is no process manager inside a docker container, but we can test the python functionality otherwise.
+
+### snake_case
+
+Apparently, the recommended format for parameter names uses snake_case instead of UpperCamelCase. This seems like a GREAT task to automate with Cluade.
+
+I am unlikely to trust AI to do things on it's own, so I validate all the changes Claude recommends and often request or make alterations to the presented solutions.
+
+### The future
+
+In addition to OSX support, I planned for: making multiple operations per cycle, converting timers to seconds instead of minutes, Docker containers as node environments, 
+
+### Abstract out Process Managers
+
+Ok, the initial implementation brought in systemd, running as the 'ant' user, with passwordless sudo access.  But I want to support managing nodes that run under multiple options and environments.  To give Claude some idea about how to split things up, I planned for multiple options.
+
+1. Linux Root systemd
+2. Linux non-root systemd
+3. Docker
+4. Setsid
+5. OSX
+6. antctl
+7. forimcaio
+8. Dimitar
+
+I start implementation with Linux root, docker and setsid to get a base for how to build the rest.
+
+### Abstact firewall
+
+OSX and docker don't use 'ufw', so I need to abstract this out and provide a 'null' option.
+
+### Decision Engine
+
+To be able to run concurrent actions, I need to seperate the choose_action function into a planning stage (decision_engine) and execution logic.
+
+### OSX support
+
+Ok, this is enough to start getting things to work locally. First, I need to setup a Python virtual environment, which means installing pyenv, which means installing Brew. Luckily, I already have XCode installed (I got that out of the way on the first day of this laptop).
+
+Beginning with a plan, the first items on the agenda are system uptime results. As with many things, OSX has a *BSD foundation, NOT a linux one. This means there are differences in names and results for certain operations.  System uptime is used to calculate if the system has rebooted since the last time wnm was run.
+
+Another change is how we get the cpu count. In linux, I am using a kernel specific result that gets the number of CPU's assigned to this session instead of the total number on the system. This doesn't apply to OSX, so we use the generic os.cpu_count method.
+
+The paths that are appropriate for OSX storage are annoying for containing spaces in the paths, in addition to being long. Sine these were mostly hard coded before, this becomes a configuration method that returns the correct paths based on the detected operation environment.
+
+Finally, I can add a new Process Manager for `launchd`, what OSX uses for managing services.
+
+#### Refactor utils
+
+The executor has been calling the utils.py methods that were inherited from the initial port of `anm`. Most of these operations actually belong to the specific process managers instead.
+
+#### Pull database changes to the executor.
+
+This separates the process managers from doing database updates directly. A win. (Since I'm writing these updates from the future, I already know this becomes a new challenge.)
+
+#### OSX tests
+
+The OSX specific tests are not numerous, however, we want them to increase coverage.
+
+### Node ID selector
+
+In my prototype, I had selected a novel approach to choosing the next node id, by scanning the database for holes from removed nodes. But, in my testing I found a bug. My code starts from the first node and searches through to the last node. The SQL fails to notice if the first node doesn't start at 1. This is a quick fix to make sure there is a node 1, otherwise, return the first hole or the last node+1.
+
+### forced_action
+
+Ok, getting started on the road to multifunctionality...
+
+First up, I need a force_action command so signals can be sent by invoking wnm directly. I add all the main actions and a new 'teardown' action that will reset an entire cluster in one call. In theory, this should require a --force argument since a TUI isn't planned to get interactive input, but teardown is kind of already a forced operation. Something to ponder.
+
+Now, I want to be able to specify specific nodes for operations, so I add --service_name as an optional parameter, we default to the built in logic over which node to select if --service_name is not defined.
+
+Next, a new foced_action, 'disable', to finally allow that state (which has been tested for since very early on in the project). Disabling a node turns it off and prevents it from being scanned during a survey. 'start'ing a disabled node with forced_action is allowed as that bring a node out of DISABLED state.  Perhaps this also needs a --force argument.
+
+## Reports
+
+Ok, we can make changes to the system, it's time to starting seeing output from the environment.
+
+Create a --report argument that selects which report to run. Then add a new action to force_action called 'survey' that will run a site survey before running the report. The default behavior is to NOT rerun the survey as on large deployments, that can take significant resources.
+
+The first reports. 'node-status' and 'node-status-details', mimic the output from the 'antctl' reports.  Then I add --report_format option to allow for 'json' output vs the default 'text' output.
+
+
+
+
