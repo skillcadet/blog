@@ -259,7 +259,7 @@ This took weeks and involved refactoring to a utils.py and common.py.
 
 Around this time there was a new release (3.0.9) of the antnode binary, so I updated the server's base location and let the system roll those changes to the colony.
 
-Then things started to go awry. The new version uses 30% more resources than that previous versions, causing the system to go over it's resource limit and stop, but not remove nodes because the system is not having disk pressure.
+Then things started to go awry. The new version uses 30% more resources than the previous versions, causing the system to go over it's resource limit and stop, but not remove nodes because the system is not having disk pressure.
 
 The first step was to lower the nodecap to get to a reasonable amount of nodes. This required dropping from 200 to 130.  This allowed the remaining nodes to upgrade.
 
@@ -271,19 +271,19 @@ I toyed around a little with Claude in a new project to learn something on how i
 
 Oops. Things went fast with Claude, and I didn't keep this blog up to date while it was happening.
 
-I may come back some day and rehash the tale using the commit logs to remember the timeline.
+~~I may come back some day and rehash the tale using the commit logs to remember the timeline.~~
 
-I started with building a CLAUDE.md in the code repo and then importing and analyize the code base. I then instructed a few changes I wanted to make and built a plan that incorporated some suggestions from Cluade's review.
+I started with building a CLAUDE.md in the code repo and then importing and analyize the code base. I then described a few changes I wanted to make and built a plan that incorporated some suggestions from Cluade's review.
 
 ### Tests
 
-Ok, first up, generate tests so we know if something breaks.  This is a little complicated, because I'm on a mac and I don't yet support OSX as a node management environment. I did discuss that as a target, but that I want to start by getting tests to work in a linux docker container before getting the project to work on a mac.
+Ok, first up, generate tests so we know if something breaks.  This is a little complicated, because I'm on a mac and I don't yet support OSX as a node management environment. I did discuss that as a target with Claude, but that I want to start by getting tests to work in a linux docker container before getting the project to work on a mac.
 
 This is a little tricky as this won't actually start a node, since there is no process manager inside a docker container, but we can test the python functionality otherwise.
 
 ### snake_case
 
-Apparently, the recommended format for parameter names uses snake_case instead of UpperCamelCase. This seems like a GREAT task to automate with Cluade.
+Apparently, the recommended format for Python parameter names uses snake_case instead of UpperCamelCase we inherited from 'anm'. This seems like a GREAT task to automate with Cluade.
 
 I am unlikely to trust AI to do things on it's own, so I validate all the changes Claude recommends and often request or make alterations to the presented solutions.
 
@@ -300,19 +300,19 @@ Ok, the initial implementation brought in systemd, running as the 'ant' user, wi
 3. Docker
 4. Setsid
 5. OSX
-6. antctl
-7. forimcaio
-8. Dimitar
+6. antctl - the official Autonomi node management tool
+7. forimcaio - another Autonomi node manager that uses containers under Docker or Podman to manage nodes
+8. Dimitar - an Autonomi user who deploys 200 node per Docker container for a total of 6k nodes/server
 
-I start implementation with Linux root, docker and setsid to get a base for how to build the rest.
+I start implementation with Linux root, Docker and setsid to get a base for how to build the rest.
 
-### Abstact firewall
+### Abstract firewall
 
-OSX and docker don't use 'ufw', so I need to abstract this out and provide a 'null' option.
+OSX and docker don't use 'ufw', so I need to abstract this out and provide a 'null' option. Then I add code to choose the firewall option based on the environment we're running in. This will need to allow us to override which firewall to use in the future, for example, if we're running as root on a linux server that doesn't have a software firewall like 'ufw'. Being able to specify 'null' or a new firewall manager gives more flexibility.
 
 ### Decision Engine
 
-To be able to run concurrent actions, I need to seperate the choose_action function into a planning stage (decision_engine) and execution logic.
+To be able to run concurrent actions, I need to seperate the choose_action function into a planning stage (decision_engine) and execution logic.  This is a big refactor, but that's why I started with tests.  Claude makes this a lot simpler than I thought it would be.
 
 ### OSX support
 
@@ -322,9 +322,9 @@ Beginning with a plan, the first items on the agenda are system uptime results. 
 
 Another change is how we get the cpu count. In linux, I am using a kernel specific result that gets the number of CPU's assigned to this session instead of the total number on the system. This doesn't apply to OSX, so we use the generic os.cpu_count method.
 
-The paths that are appropriate for OSX storage are annoying for containing spaces in the paths, in addition to being long. Sine these were mostly hard coded before, this becomes a configuration method that returns the correct paths based on the detected operation environment.
+The paths that are appropriate for OSX storage are annoying for containing spaces in the paths, in addition to being long. Since these were mostly hard coded before, this becomes a configuration method that returns the correct paths based on the detected operation environment.
 
-Finally, I can add a new Process Manager for `launchd`, what OSX uses for managing services.
+Finally, I can add a new Process Manager for `launchd`, which OSX uses for managing services.
 
 #### Refactor utils
 
@@ -352,13 +352,33 @@ Now, I want to be able to specify specific nodes for operations, so I add --serv
 
 Next, a new foced_action, 'disable', to finally allow that state (which has been tested for since very early on in the project). Disabling a node turns it off and prevents it from being scanned during a survey. 'start'ing a disabled node with forced_action is allowed as that bring a node out of DISABLED state.  Perhaps this also needs a --force argument.
 
-## Reports
+### Reports
 
 Ok, we can make changes to the system, it's time to starting seeing output from the environment.
 
 Create a --report argument that selects which report to run. Then add a new action to force_action called 'survey' that will run a site survey before running the report. The default behavior is to NOT rerun the survey as on large deployments, that can take significant resources.
 
-The first reports. 'node-status' and 'node-status-details', mimic the output from the 'antctl' reports.  Then I add --report_format option to allow for 'json' output vs the default 'text' output.
+The first reports, 'node-status' and 'node-status-details', mimic the output from the 'antctl' reports.  Then I add --report_format option to allow for 'json' output vs the default 'text' output.
+
+### multiple node specification
+
+Now, as a step towards multi-action, I add comma-separated node name support for --service_name, to limit the output of the report to just the node(s) that are requested.
+
+Then I extend the comma-separated node for --service_name to the other node actions (except for 'add node' which doesn't support named services).
+
+Next, I want to allow multiple actions on unnamed services with the addition of --count parameter that supports 'add' in addition to 'remove', 'start', 'stop', and 'upgrade'. These actions will choose the affected nodes. For example, remove and stop affect the youngest nodes while start and upgrade affect the oldest nodes.
+
+## Release v0.0.11/v0.0.12
+
+Ok, I have something worth iterating on other systems. To make that easier (I've been testing by rsyncing my updates to a linux server under a virtual environment), it's time to package up the app and push it to Github and PyPi.  I had previously deployed 'wnm' as an alpha package, both on TestPypi and Pypi, so this just entails updating the version number, building the package and pushing the deploy files. Easy peasy.  I take the additional step of making a Github release as well, which is the first time this project has been tagged.
+
+### multiple weighted rewards_address
+
+Ok, testing on systems that I can't cut and paste on means I have to type a 40 character string for the required rewards_address parameter, even though I personally will default to the community faucet wallet.
+
+To resolve this, I add support for two named wallets: 'faucet' which will use the hardcoded wallet address in the code and 'donate', which defaults to the faucet address but IS changeable via command line options.
+
+I figure it's important to distinguish between the two, because the next step is to add support for mulitple, comma-separated wallet addresses. Then, I extend that even further by optionally adding colon-separated weight value to affect the distribution of the wallets across the cluster.  eg: "--rewards_address 0x40CHAR:100,donate:10,faucet:1"
 
 
 
