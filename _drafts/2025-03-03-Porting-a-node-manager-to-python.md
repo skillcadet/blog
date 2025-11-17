@@ -378,8 +378,116 @@ Ok, testing on systems that I can't cut and paste on means I have to type a 40 c
 
 To resolve this, I add support for two named wallets: 'faucet' which will use the hardcoded wallet address in the code and 'donate', which defaults to the faucet address but IS changeable via command line options.
 
-I figure it's important to distinguish between the two, because the next step is to add support for mulitple, comma-separated wallet addresses. Then, I extend that even further by optionally adding colon-separated weight value to affect the distribution of the wallets across the cluster.  eg: "--rewards_address 0x40CHAR:100,donate:10,faucet:1"
+I figure it's important to distinguish between the two, because the next step is to add support for multiple, comma-separated wallet addresses. Then, I extend that even further by optionally adding colon-separated weight value to affect the distribution of the wallets across the cluster.  eg: "--rewards_address 0x40CHAR:100,donate:10,faucet:1"
 
+### CI/CD - Github Actions
 
+Along the way, I added configuration for Github Actions to run my tests when I push code to Github. Claude doesn't get that right on the first attempt, but iterating slightly gets the builds working.
 
+This then inspired me to getting the last failing tests to pass, so I could see a green status online. 
 
+### Documentation?
+
+Hmm. There is a lot to document and it's only going to grow geometrically worse. Actionable reference guide material may be spread through what's been captured in code, comments and artifacts.
+
+A lot of this is going to be repetitive descriptions of similar features. Claude can use my templates across them all. 
+
+Well. I generated a high level outline with Claude and then I started reading the existing documentation and found some bad assumptions that means we broke the original ProcessManager, so...
+
+### systemd+sudo
+
+First, I confusingly called this linux+root mode when it's actually running as a user and controlling the system with passwordless sudo.
+
+I have a ubuntu desktop running under parallels to test on. This requires passwordless ssh and sudo for Claude.
+
+It doesn't take a lot to get the systemd+user working again, but how about with sudo. This is for running with more resources than a regular user can use or if user processes stop when the user logs out.
+
+Ugh, apple is forcing me to reboot tonight so I'm going to be abandoning an active seesion (I ran out of tokens and). I really can't stand not being able to postpone upgrades that will reboot. F* you apple. At least tonight I noticed it was going to happen before I lose more of my work.
+
+Ok, the error was in the code that defined the service file paths only defaulting to systemd+user and not reading the configuration item from the database.
+
+Which brings up the database. Part of the problem for Claude is that the runtime is defaulting the db location to ~/colony.db instead of BASE_DIR.
+
+This requires some refactoring and code duplication to allow searching for the database in specific locations based on platform if it's not defined with --dbpath.  Which discovers that we lost the ability to define dbpath somewhere along the way.
+
+### version and remove_lockfile
+
+I added some convenience features.
+
+--version will skip most of the system bootstrap and simply output the version and exit.
+
+--remove_lockfile will remove the wnm_active lockfile and exit.
+
+### Documentation take-2
+
+Ok, I flesh out the begining of a user guide (Part 1). I didn't log as many notes while I was developing this, I'll be more diligent about keeping the docs and code current.
+
+So, again, reviewing the output I find lots of corrections, including some code changes like misnaming Launchd manager as Launchctl (a command launchd uses). Luckily that was mostly just documentation changes.
+
+The suggested commands to add to cron don't work and need to be run (generally) inside a virtual environment.  I also need to fix (again) the github url and pypi package names, maybe I didn't save some of my changes and hit accept instead.
+
+Then I generate a functional reference (Part 3)
+
+### Refactor teardown
+
+Teardown was originally going to be a command line argument option, and I had built part that required --confirm flag to also be set, but before I built a backend to it, I added teardown as a --force_action option.  So the correctly formatted one is a stub and the working one has no protection.  Fixed
+
+## multi-node containers
+
+There exist deployments of thousands of nodes that run using the Autonomi offical node running tool 'antctl' inside docker containers. And adding resource management around antctl was an original inspiration of creating wnm in the first place.
+
+Docker and Antctl process_managers have been on hold until now because they both add a layer of abstraction to our deployment.
+
+Docker and S6-Overlay nodes all run inside of a container_id that is not predefinable.
+
+Similarly, antctl maintains it's own node naming scheme that is predictable but immutable.
+
+Based on my decision to separate the process managers from direct manipulation of the database, we have to: collect, return, and update the database with these return values from the add_node process to the executor.  Luckily, I already have a type defined for a NodeProcess, so it's just adding a new field and passing the object back. Small but crucial to getting these new node managers online.
+
+I feel a larger use case for antctl directly over running antctl inside a container at this stage. People want an easy way to use antctl. I'll get to s6 later because it'll be fun to contribute to that environment.
+
+### antctl
+
+To get claude up to speed, I start by taking of a copy of the antctl README, strip it down to parts I'm using, then extending that further with supplementary information on getting the node details from antctl.
+
+Then I generate and iterate on an implementation plan before begining the task list.
+
+After coding the initial methods, I start to integrate antctl on my mac. I manually add a node to my antctl environment and then work through the issues until my --init request successfully loads the preconfigured nodes. 
+
+### --no-upnp
+
+Upto now, I've been hard-coding the --no-upnp flag (added in May 2025 and broke my nodes), but clearly that won't work for a deployment that needs upnp. So I quickly wire up a new argument to disable upnp and then update all the process managers to respect that setting.
+
+### NTracking and influx
+
+The `anm` script this project is based on is part of a larger package called [NTracking](https://github.com/safenetforum-community/NTracking) which is a platform for monitoring nodes.
+
+I had built a shim script called UpdateNodeDetails.sh that replaces /var/antctl/NodeDetails (a shell array) with a call to the database to generate the node list. However, this only works for installations using /var/antctl/services and don't contain any missing nodes.
+
+So, I add a new report 'influx-services' that will output the same data as the NTracking script.
+
+This entails adding a `-q/--quiet` flag to not emit system metrics during a job run.
+
+Most of the output from the environment correctly uses the logging package for output, but quiet mode means I have to remove the remaining print statements.
+
+### Clobber bug
+
+After some debugging, I discovered that --no_upnp is being clobbered when it's not specified on the command line. That's a problem. There is some logic mismash between a true state for a negative option that has no way of reversing the operation.
+
+### More antctl shenanigans
+
+Antctl adds a node during create but doesn't automatically start it. That's easy enough to fix in wnm. Before we can start it, we needed to be able to capture the service_name made during the add node phase.
+
+Antctl also handles binaries in a particular way. If --path is not specified, antctl attempts to download the binary every time it adds or upgrades a node. To get around this one, store the current antnode path in the machine_config, make it configurable, and use it where we deploy code.
+
+### Database migrations
+
+Ok, Alembic was integrated early on, but there isn't a mechanism to detect and run needed migrations.
+
+First, store the version number in the database. Then, when the schema's don't match, give a warning with the description on how to run migrations (with the new --force_action wnm-db-migrations --confirm) and exit.
+
+### Cluster rebuild
+
+So, there is already logic to import an anm generated cluster or an existing antctl managed cluster. I extend this capability so that we can import existing nodes from the other process managers in case we clobber our database and need to rebuild it.
+
+But this causes a problem during --init, where on a fresh installation we generate warnings that there are no nodes.  To solve this, add a new --import flag for --init operations that only triggers a survey when --import or --migrate-anm are present.
