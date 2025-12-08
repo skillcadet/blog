@@ -470,6 +470,8 @@ This entails adding a `-q/--quiet` flag to not emit system metrics during a job 
 
 Most of the output from the environment correctly uses the logging package for output, but quiet mode means I have to remove the remaining print statements.
 
+I don't want to get telegraf working on osx, much less the whole NTracking stack, so I inefficiently install everything running inside a virtual machine on my mac. Hey, that's why I got a laptop with so much memory.  This then gets documentation on how to send the influx-services report via file output on linux, or submitted over ssh from osx from cron.
+
 ### Clobber bug
 
 After some debugging, I discovered that --no_upnp is being clobbered when it's not specified on the command line. That's a problem. There is some logic mismash between a true state for a negative option that has no way of reversing the operation.
@@ -491,3 +493,27 @@ First, store the version number in the database. Then, when the schema's don't m
 So, there is already logic to import an anm generated cluster or an existing antctl managed cluster. I extend this capability so that we can import existing nodes from the other process managers in case we clobber our database and need to rebuild it.
 
 But this causes a problem during --init, where on a fresh installation we generate warnings that there are no nodes.  To solve this, add a new --import flag for --init operations that only triggers a survey when --import or --migrate-anm are present.
+
+### Clobbered logging
+
+Something that was changed broke logging. Info or debug level logs show no output.
+
+After timing out with two sessions of claude, I found the bug. Alembic was resetting loglevel to WARNING regardless of what we set on the command line.  Tsk tsk.
+
+### More reports
+
+I want to make the default run quieter by default, but keep the option to emit data without resorting to DEBUG logging.  I solve this by creating new --show_machine_metrics, --show_machine_config, --show_decisions which emits these outputs during a regular command run.
+
+Then, I add two new reports. 'machine-config' and 'machine-metrics' to be able to retrieve those reports in text or json formats.
+
+### Rate limiting survey
+
+In theory, running a survey on a large cluster could cause visible load on a server. To allow for spreading things out, I add a --survey_delay feature for milliseconds of delay between each node. Getting a hang of adding migrations right away
+
+### Test debt
+
+Getting some test errors, this resulted from tests being out of sync with the recent database schema changes. A quick fix.
+
+### Migration bug
+
+Running a check on making sure the database migrations are all correct, I discover that somehow the new --survey_delay got added with a separate HEAD in Alembic.  Since nothing else has changed, this is an easy to fix the migration chain.
