@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Porting anm node manager to Python
+date: 2025-03-03 12:00:00 +0000
 ---
 
 After running ANT nodes with antctl and launchpad, I ventured into large clusters of nodes with the community provided tool called [NTracking](https://github.com/safenetforum-community/NTracking) and it's included [aatonnomicc node manager](https://github.com/safenetforum-community/NTracking/tree/main/anm) (anm)
