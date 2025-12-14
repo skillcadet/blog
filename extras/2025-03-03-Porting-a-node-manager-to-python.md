@@ -517,3 +517,57 @@ Getting some test errors, this resulted from tests being out of sync with the re
 ### Migration bug
 
 Running a check on making sure the database migrations are all correct, I discover that somehow the new --survey_delay got added with a separate HEAD in Alembic.  Since nothing else has changed, this is an easy to fix the migration chain.
+
+## Official Concurrent Operations
+
+Ok, concurrency finally arrives by fleshing out the --max_concurrent_[start|upgrade|remove] settings with cli arguments, along with a new --max_concurrent_operations that is a global limit on total actions.
+
+It get's a little more involved as we can have fewer of a state than quotas allow. For example, the decision to add 4 nodes when there are 2 stopped nodes and the node cap allows more nodes would start 2 nodes and add 2 nodes.
+
+Now the cluster can aggressively scale up and down when configured properly.
+
+### Update_config as a no-op
+
+I added update_config/noop options to --force_action to give a targeted way to update config settings without running the decision engine automatically.  Before, there was a way to make changes by requesting a --report, otherwise the decision engine runs after settings are resolved.
+
+### More migration headaches
+
+I think I have figured out the cause of my migration system still not working. Apparently there was a race condition in the auto tagger that was causing the alembic_version table to not be created. This mean no databases currently have their version number (well, now with v0.3.3, but none in the wild) so can't be migrated without novel forensics that a simple rebuild of the cluster will solve.
+
+So, to test this I need to have something to migrate too. so I add ...
+
+### action_delay,this_action_delay/interval
+
+Now that we do things at speeds less than a minute apart, we might need to limit velocity of a set of operations.
+
+--action_delay milliseconds is a persistent setting that adds a delay between repeated operations.
+
+--this_action_delay milliseconds or it's antctl alias --interval milliseconds is a setting that does not change the machine configuration, only applying the time delay to this execution.
+
+### ENV report format
+
+I add an env report format to the machine_config report. This is to allow a user to backup the machine config settings (not the node details, which have their own reports) into a file that can be reloaded later as a config file during init or operations.
+
+Which produced an error. Before, attempting to set three immutable settings (port_start, metrics_port_start,proces_manager) would result in an error except during system --init.
+
+This caused a failure to import a reported config as those settings were not allowed to be present.  So, I changed the behaviour to only give a warning if the values are different than what is saved in the database.
+
+### this_survey_delay
+
+I had the idea for this feature before this_action_delay, but action_delay was added first because I needed something that changed the database so I could confirm that migrations were working correctly.  This allows us to set a custom, non-persistent time delay between node checks when running a survey.
+
+### --json shortcut
+
+We do have --report_format json already for some reports, but I added a shortcut --json so that (like --interval) we support similar settings to antctl.
+
+### ENV formats
+
+I decided to add --report_format env to the machine-config and machine-metrics reports. This allows exporting those values back to the shell to be used in other tooling.
+
+### Confirgparse capitalization
+
+We found an issue... configparse, when loading a from configuration file, uses the argument name (node_cap) instead of af the environment variable (NODE_CAP).  This requires fixing the documentation, but also implies the need of a 'config' --report_format so we can export our settings for later.
+
+### --init UX
+
+So, it's kinda bugged me for a while, that after an --init, wnm auto detects the system as having been rebooted.  I fix this by adding logic that detects when doing an --init, to skip the decision engine, set the start time as current, and report that the system was initialized and exit.
