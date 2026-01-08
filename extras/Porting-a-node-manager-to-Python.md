@@ -572,3 +572,75 @@ We found an issue... configparse, when loading a from configuration file, uses t
 ### --init UX
 
 So, it's kinda bugged me for a while, that after an --init, wnm auto detects the system as having been rebooted.  I fix this by adding logic that detects when doing an --init, to skip the decision engine, set the start time as current, and report that the system was initialized and exit.
+
+I also changed the --init phase to NOT run the decision engine on a newly provisioned system.
+
+Next, the migration autotagging system creates a blank database when we start wnm on a system that hasn't been --init'd. That is a simple fix, to check for the database existing before attempting to connect and only allowing it to not exist during --init.
+
+### Port start ranges
+
+Currently, as inherited from anm, the port_start, metrics_port_start and rpc_port_start ranges are the thousands digits, so port_start=55 means 55000.  
+
+It's natural to put 55000 in for this value in the configs, so extend the evaluation logic to resolve the port range in both cases.
+
+Note, this solution currently rounds down to thousands, so it's not possible to start ports at 55555, which would truncate to 55000, or the first usable digit 55001.
+
+Which reveals that we're still hardcoding the start ranges for metrics and rpc ports.  A small change is all it takes to get things working properly.
+
+### lock file shenanigans
+
+Something is causing the lock file to be left behind. So, implement signal handling and atexit handling to provide a safer way to cleanup the lock file.
+
+### add debug log
+
+When loglevel is set to DEBUG, output the decision engine, machine config and machine metrics.
+
+### Virtual environment tweaking
+
+The documentation needs tweaking on usage of virtual environments on different platforms. This is an iteration and not a final result as there are more platforms to test.
+
+### Focus on user modes
+
+root/sudo operations are not a standard implmentation, so move that example from the README to the end of the user guide part 3.
+
+### antctl path
+
+So, OSX cron does not pass the PATH environment in a way that subprocess can find the executable. So add --anctl_path to allow a full path specification.
+
+### remove antctl suggestions
+
+The guides were installing antctl for all process managers, which is unnecessary, so removed those lines from the docs.
+
+### antctl debug
+
+antctl has a --debug parameter that provides more output from the commands, so I add --antctl_debug as a flag which will activate the parameter when when present. This stays persistent when activated unless manually tweaked from the command line.
+`sqlite3 ~/.local/share/autonomi/colony.db "UPDATE machine SET antctl_debug = 0 WHERE id = 1"`
+
+### Antctl+Zen mode
+
+There is currently an issue happening, where antctl won't start a node and we get stuck. There was some strange path's happening due to wnm being opinionated about where things go and antctl which wants to use different paths.  The zen version of the antctl manager does not set any paths and lets antctl decide where the node parts go. The output of the command is processed and the settings are updated in the database. Port numbers are still set so they can land within defined port ranges. Could we allow zen mode to choose upnp ports also?
+
+### antctl --version
+
+antctl has --version argument, that when used with add/upgrade sets the version number to use. wnm already has specific behaviour for --version, so added `--antctl_version 0.0.0` which will pass the version number to antctl.
+
+### RUST_BACKTRACE
+
+Still unable to figure out why certain antctl managed nodes are just quietly dying. Adding the ability to pass in RUST_BACKTRACE environment variable to hopefully get help from autonomi.
+
+### antctl removed nodes
+
+antctl remembers removed nodes and will not allow a new node to use the same port number until a `antctl reset` is performed. This conflicts with wnm default behavior of filling in holes to stop flapping servers from running out of ports. wnm's current behaviour is to STOP a node instead of remove it if memory/cpu/io are spiking, so hopefully this doesn't become an issue.
+
+This requires a new method to track the highest used node_id and always use a new one when adding.
+
+### repr/json out of sync
+
+The internal \_\_repr\_\_ output was missing colums, as were my custom \_\_json\_\_ methods. Cleaning that up will help with debugging.
+
+### disable_config
+
+There are currently two flags that only persist a true setting, --antctl_debug and --no-upnp and ignores not being defined as a change of state. This causes an inability to turn off the setting without restorting to directly editing the sqlite3 table.
+
+The workaround for this is a new 'disable_config' action which inverts the logic and if either of those flags are set, the database is set to False.
+
