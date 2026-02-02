@@ -644,3 +644,24 @@ There are currently two flags that only persist a true setting, --antctl_debug a
 
 The workaround for this is a new 'disable_config' action which inverts the logic and if either of those flags are set, the database is set to False.
 
+### detect late start
+
+There is a race condition, where some nodes report as failed to start but actually start. This causes a problem as subsequent attempts to start the node will fail as there is already a processing listening on that port.  To solve this, when starting a node, first check the metrics port to see if it is running. If the node responds, return a True and don't attempt to restart.
+
+### site survey clobbering status flags
+
+When there is nothing else to do, wnm defaults to running a site survey to update the status of the cluster. This was accidentally overriding the UPGRADING/RESTARTING/REMOVING flags and skipping the wait times.
+
+Now, those specific flags are retained while the rest of the metrics are updated. update_counters() updates the status of each node as it exits the delay window.
+
+### default nodes when named nodes do not exist
+
+There was an issue where when --service_name (which can be a list of nodes) contains only non-matching entries, wnm was falling back to stop/start/upgrade/remove the default node (youngest/oldest/etc). Now, the behaviour is give a warning if none of the named services were found and not to process a default node.
+
+### Disabled nodes preventing new nodes
+
+There was a race condition where a disabled node with an old node version was causing 'add a node' to not run because upgrade a node code was being triggered, but a disabled node can't be upgraded, so no nodes are found when the all active nodes are on the current version. This required adjustments to how version counts are calculated and a new 'disabled' category report.
+
+### send stop when disabling a node
+
+In the event that a node is flapping, send a stop signal when disabling.
