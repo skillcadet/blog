@@ -665,3 +665,17 @@ There was a race condition where a disabled node with an old node version was ca
 ### send stop when disabling a node
 
 In the event that a node is flapping, send a stop signal when disabling.
+
+### Disable automatic upgrades
+
+Autonomi has released a new feature that allows nodes to auto-upgrade in most conditions. This requires wiring off the upgrade logic by default. I added and \-\-enable_upgrade option to allow upgrade logic to execute on that run only.
+
+### Refactor
+
+The executor module is very large. Extracting the force_actions into their own module seems like a logical choice.  At this time, I also refactor the merge_config_changes() to use an iterator instead of so much duplication of code that was doing the same thing. Finally, I split the main() method into sub task phases that are called by main()
+
+## The End?
+
+While WNM wasn't only about maximizing Autonomi nodes, the fact that nodes can grow to more than 35GB means WNM is contributing to the crush of full nodes being removed, causing more churn and fuller nodes.
+
+This codebase may not make sense in the Autonomi 2.0 era.
