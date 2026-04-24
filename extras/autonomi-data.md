@@ -3,18 +3,19 @@ Here is a repository for uploads to the Autonomi network.
 ## Files
 
 xd7/IA.jpg 
-* xor: 63680e67fba175dc1f922dd7ba6d22c837d82618d80f96c6420e37122abd527e
-* arc: 6f502ed75ea1719b5bd703784a2e3e710728e13fa41702ea590e1b8b515b22ab
+* xor: 07a403017a1ff6efd19821acc181fde7bf87efab29ad7597ae036a401a18b711
 * Total cost: 78244554267 AttoTokens
+* Renew cost: 0.046875017578125 ANT (gas: 0.00000478 ETH)
 
 xd7/xd7icon_444.jpg
 * arc: 18315624a819637c20349d5ffd32ab9e5512b0ba92850cc33293f987da83b3e6
 * Total cost: 44708689104 AttoTokens
 
 xd7/cropped-logot.png
-* xor: 0ad28368b187efc5d8bcc5d8d8655e5c83da09e92953c045c93d3ba1b939aa59
-* arc: ad50e058265c7c8e51cff405350ab5856ce58ba1e0704058586b608f81b298df
+* xor: 0c5fa494ed4fcd2bf4022d82aa01ce56290330b54e57e07f3bde8c60445ceee6
 * Total cost: 301874660559 AttoTokens
+* Renew cost: 0.0468750087890625 ANT (gas: 0.00000492 ETH)
+
 
 xd7/TSI-letterhead.jpeg
 * xor: 46c0e20f2075a21ff94c4428447128750b9345cee605018b425207010c4d387b
