@@ -25,7 +25,7 @@ My daughter requested that I attend an event with her while dressed as the chara
 
 [Base44](https://base44.com) came up in a search result for AI app generator. My 127 word prompt generated an app in about 5 minutes. The print output of the first result was scaled wrong, so I generated an update, which produced something that looks correct but still had some render defects.  However, it was close enough for my purpose. I did make changes to the settings for three different paper versions before cutting the final pattern in plastic mesh.
 
-After hot-glueing the panels together, and then forming the joined cones, I then built-up the rest of the crown-hat solution, including the cross, in mesh. My initial intent of hot gluing paper to the mesh was an instant NO! due to nearly burning my fingers on the first attempt.  I have low durability requirements for this one-time use costume (maybe I sell it after?). I'm nearly $16 into my $40 budget, which must include a cape and optional gloves. So I find wide masking tape that fits the color of the character close enough and cover the mesh in vertical strips.
+After hot-glueing the panels together, and then forming the joined cones, I then built-up the rest of the crown-hat solution, including the cross, in mesh. My initial intent of hot-glueing paper to the mesh was an instant NO! due to nearly burning my fingers on the first attempt.  I have low durability requirements for this one-time use costume (maybe I sell it after?). I'm nearly $16 into my $40 budget, which must include a cape and optional gloves. So I find wide masking tape that fits the color of the character close enough and cover the mesh in vertical strips.
 
 ![Screenshot of Base44 App](/assets/images/base44-kingerhat.png)
 
