@@ -11,6 +11,10 @@ Then, AI output began to appear in search results when I was looking up math con
 
 Finally, I used AI to mockup a specific looking photo image of a screen with a spreadsheet for an idea I had for a development competition.  I submitted my application idea with the AI image initially, however, while it looked pretty, the text was all wrong in the spreadsheet.  I used Sheets to generate the exact contents I needed for the image, created a PDF of the printed sheet and then commissioned a local artist to transform the flat spreadsheet to look like the reference image.
 
+![ATR Hero AI](/assets/images/1745713493135.jpg)
+
+![ATR Hero Alt](/assets/images/ATRHeroAlt.png)
+
 ## Cluade
 
 I used Cluade to prototype a project (Autonomi Transaction Reporter). I reached roadblocks and had to start over numerous times, however I think I was getting better at getting the output that I wanted.  I was able to make a rudementary solution in time for the competition deadline, however, I had already been disqualified due to an oveerexcited project supporter.
@@ -25,4 +29,4 @@ After hot-glueing the panels together, and then forming the joined cones, I then
 
 ![Screenshot of Base44 App](/assets/images/base44-kingerhat.png)
 
-![Kinger hat](/assets/images/kinger-hat.jpg)
+![Kinger hat](/assets/images/kingerhat.jpg)
