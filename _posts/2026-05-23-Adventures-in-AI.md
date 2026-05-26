@@ -15,9 +15,9 @@ Finally, I used AI to mockup a specific looking photo image of a screen with a s
 
 ![ATR Hero Alt](/assets/images/ATRHeroAlt.png)
 
-## Cluade
+## Claude
 
-I used Cluade to prototype a project (Autonomi Transaction Reporter). I reached roadblocks and had to start over numerous times, however I think I was getting better at getting the output that I wanted.  I was able to make a rudementary solution in time for the competition deadline, however, I had already been disqualified due to an oveerexcited project supporter.
+I used Claude to prototype a project (Autonomi Transaction Reporter). I reached roadblocks and had to start over numerous times, however I think I was getting better at getting the output that I wanted.  I was able to make a rudementary solution in time for the competition deadline, however, I had already been disqualified due to an oveerexcited project supporter.
 
 ## Base44
 
