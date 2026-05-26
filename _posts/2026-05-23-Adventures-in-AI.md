@@ -29,4 +29,4 @@ After hot-glueing the panels together, and then forming the joined cones, I then
 
 ![Screenshot of Base44 App](/assets/images/base44-kingerhat.png)
 
-![Kinger hat](/assets/images/kingerhat.jpg)
+![Kinger hat](/assets/images/kingerhat.jpeg)
