@@ -21,7 +21,7 @@ I used Claude to prototype a project (Autonomi Transaction Reporter). I reached 
 
 ## Base44
 
-My daughter requested that I attend an event with her while dressed as the character [Kinger](https://tadc.fandom.com/wiki/Kinger) from [The Amazing Digital Circus](https://en.wikipedia.org/wiki/The_Amazing_Digital_Circus).  I needed to create a template that joins two cone segments to form the foundation of the head.  I try with multiple online tools to generate the multi-page/bluebrint size [frustums](https://mathworld.wolfram.com/ConicalFrustum.html) I need, ultimately I don't succeed. I'm capable of drafting manually, but I am feeling this is an opportunity to try generating a bespoke app.
+My daughter requested that I attend an event with her while dressed as the character [Kinger](https://tadc.fandom.com/wiki/Kinger) from [The Amazing Digital Circus](https://en.wikipedia.org/wiki/The_Amazing_Digital_Circus).  I needed to create a template that joins two cone segments to form the foundation of the head.  I try with multiple online tools to generate the multi-page/blueprint size [frustums](https://mathworld.wolfram.com/ConicalFrustum.html) I need, ultimately I don't succeed. I'm capable of drafting manually, but I am feeling this is an opportunity to try generating a bespoke app.
 
 [Base44](https://base44.com) came up in a search result for AI app generator. My 127 word prompt generated an app in about 5 minutes. The print output of the first result was scaled wrong, so I generated an update, which produced something that looks correct but still had some render defects.  However, it was close enough for my purpose. I did make changes to the settings for three different paper versions before cutting the final pattern in plastic mesh.
 
