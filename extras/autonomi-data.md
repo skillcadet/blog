@@ -12,9 +12,11 @@ xd7/xd7icon_444.jpg
 * Total cost: 44708689104 AttoTokens
 
 xd7/cropped-logot.png
-* xor: 0c5fa494ed4fcd2bf4022d82aa01ce56290330b54e57e07f3bde8c60445ceee6
+
 * Total cost: 301874660559 AttoTokens
 * Renew cost: 0.0468750087890625 ANT (gas: 0.00000492 ETH)
+* Etchd: 0c5fa494ed4fcd2bf4022d82aa01ce56290330b54e57e07f3bde8c60445ceee6
+
 
 
 xd7/TSI-letterhead.jpeg
@@ -61,6 +63,8 @@ dawn/moon_transit.jpg
 
 "XD7 is Dawning!"
 * Data uploaded for 0.00000000000000000000022354417212 ANT to: ca7ac61ce74e27b64bd749617657a946258fd5d97bca48133b089b112fed59c9
+* Data Etch for 0.046875990234375 ANT (gas 0.000004941984708) to 8556f3323c314ee0cbe86993e809d6819f913cbb6f7d519f3a7c9a869db6daf3 
+
 
 
 ### ScratchChat

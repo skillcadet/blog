@@ -668,7 +668,7 @@ In the event that a node is flapping, send a stop signal when disabling.
 
 ### Disable automatic upgrades
 
-Autonomi has released a new feature that allows nodes to auto-upgrade in most conditions. This requires wiring off the upgrade logic by default. I added and \-\-enable_upgrade option to allow upgrade logic to execute on that run only.
+Autonomi has released a new feature that allows nodes to auto-upgrade in most conditions. This requires wiring off the upgrade logic by default. I added an \-\-enable_upgrade option to allow upgrade logic to execute on that run only.
 
 ### Refactor
 

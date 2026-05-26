@@ -20,7 +20,7 @@ Offline, I went by `Garth`, my first name, up until 2017 when I started using `T
 I have recently been donating my resources to [Autonomi](https://autonomi.com), a decentralized storage solution I have been following since 2012.
 
 * [ANT Faucet](https://ant.xd7.org) - A tool that dispenses network testing tokens to members of the [autonomi community forum](https://forum.autonomi.community/).
-* [wnm](https://github.com/iweave/weave-node-manager) - Weave Node Manager, an in-progress node management tool.
+* [wnm](https://github.com/iweave/weave-node-manager) - Weave Node Manager, a deprecated (Network V1) node management tool.
 * [atr](https://github.com/ambled/atr) - Autonomi Transaction Reporter, A tool that will correlate the asset allocation of multiple crypto wallets, engaged in Autonomi transactions, on the live network.
 
 ## History

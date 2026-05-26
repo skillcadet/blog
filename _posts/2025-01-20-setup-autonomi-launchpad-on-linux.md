@@ -2,6 +2,9 @@
 layout: post
 title: Setup Autonomi Launchpad On Linux (Ubuntu 24.04)
 ---
+## Update: Deprecated
+
+May 2026 - This historic blog refers to the Autonomi 1 network which is now offline, replaced with the Autonomi 2 network and different tooling.
 
 # Getting started
 
