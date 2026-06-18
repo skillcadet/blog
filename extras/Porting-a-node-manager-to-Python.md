@@ -136,7 +136,7 @@ I've been looking forward to the first piece of this section. One of the patches
 
 Build a new record requires setting all the variables that make up a node. Then, create the node root directory and the log directory, copy the current antnode binary to the root directory and set them up to be owned by the node operator (ant). Next, create the service definition file and reload systemd configuration.
 
-Finally, create start_systemd_node and enable_firewall with performs those operations and sets the node status to RESTARTING.
+Finally, create start_systemd_node and enable_firewall which performs those operations and sets the node status to RESTARTING.
 
 With this in place, my missing node numbers fill in and the NodeCap is reached.
 
@@ -220,13 +220,13 @@ Ok, wnm properly disabled anm and ingested the cluster. Create a cron entry and,
 
 One of the tools recommended for my project was [black](https://github.com/psf/black), a code formatter.  I hope this to be a long lived project, so I process my modules to check how inconsistently I've done.
 
-I know that I dislike Python mostly because whitespace affects the execution of your code and I prefer to use whitespace more liberally than allowed.  I also tend to use single quotes for constant strings as other languages I have used have better performance when using single quoted strings.
+I know that I dislike Python mostly because whitespace affects the execution of your code and I prefer to use whitespace more liberally than allowed.  I also tend to use single quotes for constant strings as other languages I have used have better performance when using single quotes on static strings.
 
 I don't like the way black treats comprehensions or how black ends the indentation on multiline expressions.  There are a couple sections that are harder to follow being expanded by black, but otherwise I'm onboard with the changes.
 
 ### isort
 
-The final tool recommended, [isort](https://pycqa.github.io/isort/), this simply reorders the import packages sections of code files, splitting the imports into groups by category and then alphabetically. `isort` also supports `black` formatting, so it splits long lists of imports into a multiline list.
+The final tool recommended, [isort](https://pycqa.github.io/isort/), simply reorders the import packages sections of code files, splitting the imports into groups by category and then alphabetically. `isort` also supports `black` formatting, so it splits long lists of imports into a multiline list.
 
 ### src
 
@@ -521,7 +521,7 @@ Running a check on making sure the database migrations are all correct, I discov
 
 ## Official Concurrent Operations
 
-Ok, concurrency finally arrives by fleshing out the --max_concurrent_[start|upgrade|remove] settings with cli arguments, along with a new --max_concurrent_operations that is a global limit on total actions.
+Ok, concurrency finally arrives by fleshing out the --max_concurrent_\[start|upgrade|remove\] settings with cli arguments, along with a new --max_concurrent_operations that is a global limit on total actions.
 
 It get's a little more involved as we can have fewer of a state than quotas allow. For example, the decision to add 4 nodes when there are 2 stopped nodes and the node cap allows more nodes would start 2 nodes and add 2 nodes.
 
@@ -567,7 +567,7 @@ I decided to add --report_format env to the machine-config and machine-metrics r
 
 ### Confirgparse capitalization
 
-We found an issue... configparse, when loading a from configuration file, uses the argument name (node_cap) instead of af the environment variable (NODE_CAP).  This requires fixing the documentation, but also implies the need of a 'config' --report_format so we can export our settings for later.
+We found an issue... configparse, when loading from configuration file, uses the argument name (node_cap) instead of af the environment variable (NODE_CAP).  This requires fixing the documentation, but also implies the need of a 'config' --report_format so we can export our settings for later.
 
 ### --init UX
 
@@ -636,7 +636,7 @@ This requires a new method to track the highest used node_id and always use a ne
 
 ### repr/json out of sync
 
-The internal \_\_repr\_\_ output was missing colums, as were my custom \_\_json\_\_ methods. Cleaning that up will help with debugging.
+The internal \_\_repr\_\_ output was missing columns, as were my custom \_\_json\_\_ methods. Cleaning that up will help with debugging.
 
 ### disable_config
 
@@ -660,7 +660,7 @@ There was an issue where when --service_name (which can be a list of nodes) cont
 
 ### Disabled nodes preventing new nodes
 
-There was a race condition where a disabled node with an old node version was causing 'add a node' to not run because upgrade a node code was being triggered, but a disabled node can't be upgraded, so no nodes are found when the all active nodes are on the current version. This required adjustments to how version counts are calculated and a new 'disabled' category report.
+There was a race condition where a disabled node with an old node version was causing 'add a node' to not run because upgrade a node code was being triggered, but a disabled node can't be upgraded, so no nodes are found when all active nodes are on the current version. This required adjustments to how version counts are calculated and a new 'disabled' category report.
 
 ### send stop when disabling a node
 
