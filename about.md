@@ -12,7 +12,7 @@ This blog is where I document that work: technical walkthroughs, projects, decis
 ## Projects and writing
 
 - **Home Alone Program** — An ongoing project to help a community manage daily resident check-ins. It has involved requirements discovery, map-based interfaces, accessibility, authentication, deployment constraints, and a lot of iteration with the people who use it. I'm documenting the work as a draft.
-- **[ANT Faucet](https://ant.xd7.org)** — A tool for dispensing network testing tokens to members of the [Autonomi community](https://forum.autonomi.community/). I wrote about [building a faucet application]({{ '/2025/02/02/Writing-a-faucet-dapp.html' | relative_url }}).
+- **[ANT Faucet](https://ant.xd7.org)** — A tool for dispensing network testing tokens to members of the [Autonomi community](https://forum.autonomi.community/). I wrote about [building a faucet application]({% post_url 2025-02-02-Writing-a-faucet-dapp %}).
 - **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — A project to correlate asset allocations across wallets involved in Autonomi transactions.
 - **[Weave Node Manager](https://github.com/iweave/weave-node-manager)** — A now-deprecated node management tool from an earlier version of the network.
 
