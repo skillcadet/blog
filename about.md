@@ -1,46 +1,33 @@
 ---
 layout: page
-title: About Page
+title: About
 ---
 
-## Many names
+I've spent much of my career building, deploying, and troubleshooting technical systems. What has kept me interested is not any particular technology, but the work of understanding a problem, fitting the pieces together, and making something useful.
 
-Offline and online, I have gone by many names.
+I started out writing software, moved into operations after seeing how easily good engineering could run into deployment realities, and spent years working across the boundary between the two. I've helped build hosting infrastructure, worked with startups, and operated large systems. More recently, I've been returning to application development, exploring AI-assisted tools, and studying new subjects.
 
-Online, I've had many identities going back to 1985 as `darkstar`. At the moment, I'm primarily associated with the following:
+This blog is where I document that work: technical walkthroughs, projects, decisions, mistakes, and things I'm still figuring out. I try to explain *why* I made a choice, not just which commands I ran.
 
-* Github: [@ambled](https://www.github.com/ambled)
-* Discord: [\_xd7\_](https://discord.com/users/_xd7_)
-* There.com: [willidream](https://webapps.prod.there.com/profiles/profiles?AvatarName=willidream&op=view)
+## Projects and writing
 
-Offline, I went by `Garth`, my first name, up until 2017 when I started using `Troy`, my middle name. I also respond to and create art as `Dawn`.
+- **Home Alone Program** — An ongoing project to help a community manage daily resident check-ins. It has involved requirements discovery, map-based interfaces, accessibility, authentication, deployment constraints, and a lot of iteration with the people who use it. I'm documenting the work as a draft.
+- **[ANT Faucet](https://ant.xd7.org)** — A tool for dispensing network testing tokens to members of the [Autonomi community](https://forum.autonomi.community/). I wrote about [building a faucet application]({{ '/2025/02/02/Writing-a-faucet-dapp.html' | relative_url }}).
+- **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — A project to correlate asset allocations across wallets involved in Autonomi transactions.
+- **[Weave Node Manager](https://github.com/iweave/weave-node-manager)** — A now-deprecated node management tool from an earlier version of the network.
 
-## Recent Projects
+Some posts are practical tutorials; others are development journals or reflections on learning. They're all works in progress in one sense or another.
 
-I have recently been donating my resources to [Autonomi](https://autonomi.com), a decentralized storage solution I have been following since 2012.
+## A little history
 
-* [ANT Faucet](https://ant.xd7.org) - A tool that dispenses network testing tokens to members of the [autonomi community forum](https://forum.autonomi.community/).
-* [wnm](https://github.com/iweave/weave-node-manager) - Weave Node Manager, a deprecated (Network V1) node management tool.
-* [atr](https://github.com/ambled/atr) - Autonomi Transaction Reporter, A tool that will correlate the asset allocation of multiple crypto wallets, engaged in Autonomi transactions, on the live network.
+My first technology job involved rewriting point-of-sale and back-office software for a fuel-station company while I was in college. That got me hooked on solving problems with code.
 
-## History
+After seeing the disconnect between software development and the systems needed to run it, I shifted toward operations. In 1995, I co-launched a web-hosting business, designed its technical stack, and helped customers establish an internet presence. Later roles took me through startups, decentralized systems, infrastructure automation, and large clusters.
 
-I have had an extensive career, first working part time at a (family) factory and doing chores for neighbors as a child. When I started food service at 14, I got my first real exposure to customer service problems right away.
+I eventually found myself wanting to spend more time on the design and development side again. That doesn't mean leaving operational experience behind; it means bringing those lessons into the things I build.
 
-My first tech job was the summer of my first year in college, I rewrote the Point Of Sale and backoffice systems for a Fuel Station company in Long Beach and Aneheim. It got me hooked on solving problems with code.
+## Elsewhere
 
-I varied jobs over the next few years until I had an encounter with a team member on the Operations Team, complaining about how the engineers dropped code that needed to be run without consideration for the hardware requirements and lead times necessary to deploy the request.
-I took that information to heart and boldly thought, I bet I can learn better ways to deploy code in a few years and transitioned to Operations roles.
+I've used several names online and offline over the years. You may know me as **ambled** on [GitHub](https://github.com/ambled), **_xd7_** on Discord, or **willidream** on There.com. I used my first name, Garth, until 2017 and have generally used my middle name, Troy, since then. I also create art as Dawn.
 
-In 1995, I co-launched a Web Hosting business. I designed the tech stack and did consulting for companies that wanted to onboard to the Internet.
-
-In 1998 I officially joined the startup world and a whirlwind of roles with companies who struggled to gain or maintain traction.
-
-In 2010, I turned off the lights of the Web Hosting business to focus on decentralized projects (Weave).
-
-In 2012, I launched the first Weave project, a node operator powered by Datafiniti. Sadly, Datafinity decommissioned the network in 2014 just as my next module, a browser extension called xdconsole that monitored the Datafinity workloads, was released.
-
-Around this time, the way I had been treating engineering/operations with agile kinds of communication became formalized into a concept called DevOps.  Over the next decade I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
-
-Mostly, I just wanted this all to work, so now I've shifted my focus back on the Dev side of DevOps.
-
+Corrections, suggestions, and technical discussion are welcome through this blog's [GitHub issues](https://github.com/skillcadet/blog/issues) and [discussions](https://github.com/skillcadet/blog/discussions).
