@@ -9,9 +9,9 @@ This is a working notebook: technical walkthroughs, engineering projects, experi
 
 ## Start here
 
-- **[Writing a faucet dApp]({{ '/2025/02/02/Writing-a-faucet-dapp.html' | relative_url }})** — Building an application around real users, external services, and abuse prevention.
-- **[Starting an on-premise Kubernetes cluster]({{ '/2024/11/18/Starting-a-cluster.html' | relative_url }})** — Infrastructure decisions and hands-on configuration.
-- **[Adventures in AI]({{ '/2026/05/23/Adventures-in-AI.html' | relative_url }})** — Experiments with AI-assisted development and where human review still matters.
+- **[Writing a faucet dApp]({% post_url 2025-02-02-Writing-a-faucet-dapp %})** — Building an application around real users, external services, and abuse prevention.
+- **[Starting an on-premise Kubernetes cluster]({% post_url 2024-11-18-Starting-a-cluster %})** — Infrastructure decisions and hands-on configuration.
+- **[Adventures in AI]({% post_url 2026-05-23-Adventures-in-AI %})** — Experiments with AI-assisted development and where human review still matters.
 
 For more about my background and current projects, see the [About page]({{ '/about/' | relative_url }}).
 
