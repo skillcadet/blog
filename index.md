@@ -3,16 +3,20 @@ layout: home
 title: Home
 ---
 
-I've spent much of my career building, deploying, and troubleshooting technical systems. These days, I'm increasingly focused on designing solutions, building applications, and exploring how AI changes the development process.
+I use this blog to work through technical problems in public: what I built, the choices I made, what failed, and what I learned along the way. The subjects range from infrastructure and decentralized systems to applications and AI-assisted development.
 
-This is a working notebook: technical walkthroughs, engineering projects, experiments, and occasional reflections on learning something new. I try to explain not just what worked, but why I made particular decisions and what I'd do differently.
+## Projects
 
-## Start here
+- **[CHAP — Community Home Alone Program](https://chap.weave.sh)** — A community safety check-in application built around residents, staff, and a map of the community.
+- **ANT Faucet** — An Autonomi community faucet currently offline because its forum-based eligibility verification is no longer available. The [development write-up]({% post_url 2025-02-02-Writing-a-faucet-dapp %}) is still available.
+- **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — Exploring transaction reporting across wallets on the Autonomi network.
 
-- **[Writing a faucet dApp]({% post_url 2025-02-02-Writing-a-faucet-dapp %})** — Building an application around real users, external services, and abuse prevention.
-- **[Starting an on-premise Kubernetes cluster]({% post_url 2024-11-18-Starting-a-cluster %})** — Infrastructure decisions and hands-on configuration.
-- **[Adventures in AI]({% post_url 2026-05-23-Adventures-in-AI %})** — Experiments with AI-assisted development and where human review still matters.
+## Selected writing
 
-For more about my background and current projects, see the [About page]({{ '/about/' | relative_url }}).
+- **[Starting an on-premise Kubernetes cluster]({% post_url 2024-11-18-Starting-a-cluster %})** — Building and configuring infrastructure.
+- **[Adventures in AI]({% post_url 2026-05-23-Adventures-in-AI %})** — Working with AI-assisted development, including its mistakes.
+- **[Writing a faucet dApp]({% post_url 2025-02-02-Writing-a-faucet-dapp %})** — Designing an application around external dependencies and abuse prevention.
+
+Read more about my background on the [About page]({{ '/about/' | relative_url }}).
 
 ## Recent posts
