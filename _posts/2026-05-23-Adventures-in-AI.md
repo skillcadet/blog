@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Adventures in AI
+description: "Experiments with AI-assisted coding, image generation, and app building, including what worked, what failed, and what I had to fix."
 ---
 
 ## In the beginning...
