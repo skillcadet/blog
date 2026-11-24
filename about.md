@@ -1,46 +1,28 @@
 ---
 layout: page
-title: About Page
+title: About
 ---
 
-## Many names
+I like figuring out how systems fit together, especially when the problem doesn't fit neatly inside one specialty. I've worked in software development, operations, hosting, startups, and decentralized infrastructure. Along the way, I've learned that the most interesting engineering decisions usually involve people, constraints, and tradeoffs as much as technology.
 
-Offline and online, I have gone by many names.
+## How I got here
 
-Online, I've had many identities going back to 1985 as `darkstar`. At the moment, I'm primarily associated with the following:
+My first technology job involved rewriting point-of-sale and back-office software for a fuel-station company while I was in college. It got me hooked on solving problems with code.
 
-* Github: [@ambled](https://www.github.com/ambled)
-* Discord: [\_xd7\_](https://discord.com/users/_xd7_)
-* There.com: [willidream](https://webapps.prod.there.com/profiles/profiles?AvatarName=willidream&op=view)
+Later, I saw how easily software projects could overlook the hardware, deployment, and operational realities needed to run them. I moved into operations to understand that side better. In 1995, I co-launched a web-hosting business, designed its technical stack, and helped customers establish an internet presence.
 
-Offline, I went by `Garth`, my first name, up until 2017 when I started using `Troy`, my middle name. I also respond to and create art as `Dawn`.
+Subsequent work took me through startups, decentralized projects, infrastructure automation, and large clusters. Over time, I became interested in returning to application development, bringing the lessons from operations with me.
 
-## Recent Projects
+These days, I'm exploring how AI-assisted development changes the way I design and build software. I still care about whether the resulting system is understandable, useful, and maintainable.
 
-I have recently been donating my resources to [Autonomi](https://autonomi.com), a decentralized storage solution I have been following since 2012.
+## What you'll find here
 
-* [ANT Faucet](https://ant.xd7.org) - A tool that dispenses network testing tokens to members of the [autonomi community forum](https://forum.autonomi.community/).
-* [wnm](https://github.com/iweave/weave-node-manager) - Weave Node Manager, a deprecated (Network V1) node management tool.
-* [atr](https://github.com/ambled/atr) - Autonomi Transaction Reporter, A tool that will correlate the asset allocation of multiple crypto wallets, engaged in Autonomi transactions, on the live network.
+Some posts are practical tutorials. Others are development journals, experiments, or accounts of things that didn't work the first time. I try to include the reasoning behind the decisions, not just the final commands or code.
 
-## History
+Current projects and selected articles are linked from the [homepage]({{ '/' | relative_url }}).
 
-I have had an extensive career, first working part time at a (family) factory and doing chores for neighbors as a child. When I started food service at 14, I got my first real exposure to customer service problems right away.
+## Names and contact
 
-My first tech job was the summer of my first year in college, I rewrote the Point Of Sale and backoffice systems for a Fuel Station company in Long Beach and Aneheim. It got me hooked on solving problems with code.
+I've used several names online and offline over the years. You may know me as **ambled** on [GitHub](https://github.com/ambled), **_xd7_** on [Discord](https://discord.com/users/_xd7_), or **willidream** on There.com. I used my first name, Garth, until 2017 and have generally used my middle name, Troy, since then. I also create art as Dawn.
 
-I varied jobs over the next few years until I had an encounter with a team member on the Operations Team, complaining about how the engineers dropped code that needed to be run without consideration for the hardware requirements and lead times necessary to deploy the request.
-I took that information to heart and boldly thought, I bet I can learn better ways to deploy code in a few years and transitioned to Operations roles.
-
-In 1995, I co-launched a Web Hosting business. I designed the tech stack and did consulting for companies that wanted to onboard to the Internet.
-
-In 1998 I officially joined the startup world and a whirlwind of roles with companies who struggled to gain or maintain traction.
-
-In 2010, I turned off the lights of the Web Hosting business to focus on decentralized projects (Weave).
-
-In 2012, I launched the first Weave project, a node operator powered by Datafiniti. Sadly, Datafinity decommissioned the network in 2014 just as my next module, a browser extension called xdconsole that monitored the Datafinity workloads, was released.
-
-Around this time, the way I had been treating engineering/operations with agile kinds of communication became formalized into a concept called DevOps.  Over the next decade I ran a few large clusters, proving that infrastructure can be treated as code and run at scale.
-
-Mostly, I just wanted this all to work, so now I've shifted my focus back on the Dev side of DevOps.
-
+For technical discussion or corrections, you can reach me through [GitHub issues](https://github.com/skillcadet/blog/issues) or [Discord](https://discord.com/users/_xd7_).
