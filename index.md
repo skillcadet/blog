@@ -7,7 +7,7 @@ I write about building and troubleshooting technical systems: the problem I was 
 
 ## Projects
 
-- **[CHAP — Community Home Alone Program](https://chap.weave.sh)** — An actively developed community check-in system with a map-based volunteer view and resident workflows. Voice and SMS check-ins are not operational yet; phone-number authorization is pending.
+- **[CHAP — Community Home Alone Program](https://chap.weave.sh)** — An actively developed community check-in system with a map-based volunteer view and resident workflows. Voice and SMS check-ins are not operational yet; phone-number authorization is pending. [Read the CHAP case study]({% post_url 2026-11-23-building-chap %}).
 - **[ANT Faucet](https://ant.xd7.org)** — An Autonomi community faucet currently offline after its forum-based eligibility verification became unavailable. I wrote about [building the faucet]({% post_url 2025-02-02-Writing-a-faucet-dapp %}).
 - **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — Work on reporting transactions across wallets on the Autonomi network.
 
