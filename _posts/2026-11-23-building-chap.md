@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Building CHAP: A Community Check-In System That Keeps Evolving"
+description: "Building a map-based community check-in system: volunteer workflows, practical hosting constraints, privacy, and lessons from AI-assisted development."
 date: 2026-11-23
 ---
 
