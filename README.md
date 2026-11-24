@@ -16,7 +16,7 @@ The first run downloads a Ruby image and installs the site's Ruby gems; it may t
 
 Open [http://localhost:4000](http://localhost:4000) to see the site. Changes to Markdown and layouts should trigger a rebuild; refresh your browser if needed. Press **Ctrl+C** to stop, or run `docker compose down` in another terminal.
 
-The local preview uses the GitHub Pages gem to align its Jekyll/plugin versions with the published site. The `jekyll-remote-theme` plugin downloads the Minima theme during the build, so an internet connection is needed.
+The local preview uses Jekyll 4 and the site's configured plugins. GitHub Pages may use different versions, so the local preview is not an exact reproduction of its build environment. The `jekyll-remote-theme` plugin downloads the Minima theme during the build, so an internet connection is needed.
 
 To preview a pull request branch:
 
