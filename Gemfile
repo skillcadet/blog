@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-# Match the Jekyll and plugin versions used by GitHub Pages.
-gem "github-pages", group: :jekyll_plugins
-gem "jekyll-remote-theme", group: :jekyll_plugins
-
-# Older Kramdown (via github-pages) requires REXML explicitly on modern Ruby.
-gem "rexml", "~> 3.2.9"
+# Local preview uses modern Jekyll; GitHub Pages builds separately.
+gem "jekyll", "~> 4.4"
+gem "jekyll-remote-theme", "~> 0.4"
+gem "jekyll-feed"
+gem "jekyll-seo-tag"
+gem "jemoji"
