@@ -1,14 +1,17 @@
 ---
 layout: post
 title: Writing a Faucet Dapp for Autonomi Testing
+description: "Building an Autonomi token faucet with Python, Flask, SQLite, and Arbitrum, including validation, abuse prevention, and mainnet lessons."
 ---
 
-## What?
+**Current status (November 2026):** The faucet is temporarily offline because the community forum used for eligibility verification shut down. The [faucet status page](https://ant.xd7.org) has the latest notice. The account below describes how I built and operated it in 2025.
+
+## What was I building?
 
 The following glossary attempts to make this clearer:
 
 * [Autonomi](https://www.autonomi.com) - Provides a decentralized storage network that allows you to pay once to permanently store and then retrieve information free of charge.
-* Faucet Dapp - Is a term used for a system that rewards users with free cryptocurrencies.
+* Faucet dApp — An application that distributes small amounts of cryptocurrency to users, usually for testing or onboarding.
 
 
 In our use case, "Testing Autonomi" means to upload data to the network, which requires two separate cryptocurrencies:
@@ -18,19 +21,19 @@ In our use case, "Testing Autonomi" means to upload data to the network, which r
 
 The code produced by this adventure can be found at [this repo](https://github.com/iweave/antfaucet)
 
-## Autonomi ~~Pre~~Post-launch
+## From testnet to launch
 
-When this project started, the Real token had not launched (Feb ~~6~~~~11~~14, 2025), so the only way to gain ANT had been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
+When this project started, the real token had not launched (it ultimately launched on February 14, 2025), so the only way to gain ANT had been to [run nodes](https://docs.autonomi.com/getting-started) on the test networks, earning little bits along the way.  Since the nodes are allocated randomly, it can be challenging to earn enough tokens to practically upload a file.  For example, it takes roughly 12 rewards to earn enough ANT for the smallest file to upload, which can take more than a week to earn at the current rate.
 
 
-To allow users to more quickly and easily test uploads, we needed a simple way to grant ~~test~~ tokens that have already been earned for others to use. After a discord member suggested that there be a faucet, I thought, "I can learn something even if I don't succeed. I'll give it a try!"
+To allow users to more quickly and easily test uploads, we needed a simple way to grant tokens that have already been earned for others to use. After a discord member suggested that there be a faucet, I thought, "I can learn something even if I don't succeed. I'll give it a try!"
 
 ## The setup
 
 First up, I needed to find out how to transfer tokens in Python. ANT is something called ERC-20 that lives on a second-layer network called Arbitrum (which is compatible with Ethereum, a popular cryptocurrency.) I was confident that transferring ETH would be well documented, so I looked for Python examples that transferred ERC-20 tokens. After more searching and testing of code than I hoped, I finally stumbled on [this](https://web3-ethereum-defi.readthedocs.io/tutorials/transfer.html) page that just worked. A small bit of research into the Web3 API that the example was from showed the slight change needed to also send ETH from the command line.
 
 
-That gets us most of the way there, the rest is wrapping it all into something accessable to others.
+That gets us most of the way there, the rest is wrapping it all into something accessible to others.
 
 ## Getting started
 
@@ -81,7 +84,7 @@ That looks good. Let's create a "success.html" to give a render target for our g
 
 ### Validating data
 
-It's getting serious now, we have a function to protect. I created a validate_request() function and passed it the form_data. We know a wallet address can be between 0 and 40 characters long and only contain hexadecimal characters (upper and lowercase) and the letter x/X (to notate it is a hex number), so that's our first check.
+It's getting serious now, we have a function to protect. I created a validate_request() function and passed it the form_data. An Ethereum-style wallet address is normally 42 characters long: a `0x` prefix followed by 40 hexadecimal characters. That's the format the form needs to validate, along with the checksum handling described above.
 
 ### Persistence
 
@@ -98,18 +101,18 @@ And finally, I created the add_db() function to add transactions to the database
 
 ## Bringing it online
 
-### hcaptcha
+### hCaptcha
 
 Now it's all fine and good to develop on a local computer, eventually we want others to test our creation, but I am running a little server that I don't want a thundering herd by someone writing a script to drain the faucet's wallet.  To protect the 'expensive' database calls and other complex processing, I want to protect the input form. Some search for a privacy-compliant option found me [hcaptcha](https://www.hcaptcha.com/), which required very little to set up. I had to register for the free service, create an endpoint, and add some JavaScript and a `<div>` tag to my web form template file. Hcaptcha also requires to be served from an HTTPS web page, so I had to set up that (described briefly below).
 
 
-Following my normal steps, I created a check_hcapthca() function, set up a return False and a reason of the captcha failed, added the new function to validate_request.
+Following my normal steps, I created a `check_hcapthca()` function, set up a return False and a reason of the captcha failed, added the new function to validate_request.
 This showed me the new variable that was returned by the form.  I added a check to make sure that the captcha was provided or we fail right away.
 
 
-If the captcha is provided, we need to verify by making an API request to hcaptcha and getting confirmation that it's both valid and timely. This payload is quite large, ~~so I don't have any filtering on it and it's a potential vector for buffer overflows and wasting resources. Something for the future if this lasts more than a week/proof-of-concept.~~ Again, I start with the failure case hard coded, then add the API call, and if we get a success finally add the True status.
+If the captcha is provided, we need to verify by making an API request to hcaptcha and getting confirmation that it's both valid and timely. The verification response contains more information than I need. As with the earlier validation work, I start with the failure case hard coded, then add the API call, and if we get a success finally add the True status.
 
-### HTTPS/SSL Let's Encrypt
+### HTTPS with Let's Encrypt
 
 I prefer [NGINX](https://nginx.org) as a web gateway which has support for [Let's Encrypt](https://letsencrypt.org) using [CertBot](https://certbot.eff.org/).
 
@@ -135,18 +138,18 @@ I know that the built-in web server for Flask is not production ready (besides, 
 
 But are we finished? Not one to leave a good thing alone, I wanted to check the faucets from my phone. But I don't want to impact the live instance with my testing, so I create a development server on a different port and set up another NGINX reverse proxy to activate the new internal node.
 
-## Success/Drips
+## Counting successful drips
 
 The success endpoint was pretty simple, it just counts the number of records (minus the initial test record) and displays it onscreen. The only difficult part was I had already used the 'success.html' template filename, so I renamed the endpoint from /success to /drips.  The next day, I used CSS to increase the font size to very large, so it renders visibly on a smartphone.
 
-## Rate limit
+## Adding a rate limit
 
 After a little discussion, the lead user suggested a good idea for the endpoint... a Rate limit. I decided to start with 6 drips/hour as a reasonable velocity.
 
 
 First, check_db() became too generic so was renamed to check_db_for_wallet(), and then a new function check_db_for_rate() was defined and set to automatically return a True. Then I added a simple query that checks the COUNT() of the number of transactions in the last RATE_WINDOW seconds is more than RATE_LIMIT in which case it returns the count as a True and False only if we are below the rate limit.
 
-## Restore test transactions
+## Restoring test transactions
 
 It bugged me that I reset the database and lost the initial 'live' transactions. I initially chose that route so the testers could re-request a full faucet drip, but deleting the database was not the only option. The solution was something I already planned on, but didn't execute initially to stay focused on getting things testable.
 
@@ -191,7 +194,7 @@ If we detect that the test harness is active, record 0.0 for drip amounts since 
 
 In this step, I created a migration sql file and also updated the broken transactions to 0.0 eth/ant.
 
-## Switching to the Mainnet!
+## Switching to mainnet
 
 Ok, on February 14th, 2025, the real ANT token launched on the Arbitrum One network. In theory this is simple. 
 
@@ -204,7 +207,7 @@ Ok, on February 14th, 2025, the real ANT token launched on the Arbitrum One netw
 * Set new Drip rates
 * Change the wallet donate address on the input form
 
-All of which went swimmingly, however... transactions on the mainnet are confirming faster than the faucet issues them introducing a race condition on the nonce (serial number) of the second transaction.
+All of which went swimmingly, however... the two transactions exposed a nonce-management race condition. The second transaction could be submitted with an incorrect nonce before the first transaction's state was handled correctly.
 
 I solved the broken response by wrapping the transactions in try/except blocks and I also wait for the first transaction to fully complete before issuing the second one.
 
@@ -220,19 +223,19 @@ Per a request in the forum, to help with people sending screenshots of the fauce
 
 I also reintroduced the Metamask integration, with corrections to allow Metamask to return lowercase wallet addresses and still work correctly.
 
-## Temporarily Halt Faucet
+## Temporarily halting the faucet
 
 Well, it didn't take long for the faucet to be abused (likely). However, I don't have time to work on solutions at the moment, so to save funds I'm pausing the faucet. Ugh.
 
-### Add forum integration
+### Adding forum integration
 
 I received permission from the [Autonomi Community Forum](https://forum.autonomi.community/) to use the system as more user friction for people that want a drip.
 
-To receive a drip, they need to enter a forum name that is over 2 days old and generate a MD5 hash of their membername and a secret phrase.  Then they paste that hash as a reply to a specific forum topic, and copy the direct link to the post.  Finally, they come back to the form and add the forum post link to the form with their membername and wallet and submit to receive a drip.
+To receive a drip, users needed a forum account more than two days old. They generated an MD5 hash from their member name and a secret phrase. This was an eligibility workflow, not a secure authentication mechanism by itself.  Then they paste that hash as a reply to a specific forum topic, and copy the direct link to the post.  Finally, they come back to the form and add the forum post link to the form with their membername and wallet and submit to receive a drip.
 
 This may be enough friction to lift/increase the rate limit.
 
-## Badges soft launch
+## Badges: an early idea
 
 While integrating the forum validation, I announced that badges will be coming for wallets.  The first badge, `1st` just means you got a drip. Other badges I'm thinking of right now are:
 * New wallet
