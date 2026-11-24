@@ -8,7 +8,7 @@ I use this blog to work through technical problems in public: what I built, the 
 ## Projects
 
 - **[CHAP — Community Home Alone Program](https://chap.weave.sh)** — A community safety check-in application built around residents, staff, and a map of the community.
-- **ANT Faucet** — An Autonomi community faucet currently offline because its forum-based eligibility verification is no longer available. The [development write-up]({% post_url 2025-02-02-Writing-a-faucet-dapp %}) is still available.
+- **[ANT Faucet](https://ant.xd7.org)** — An Autonomi community faucet currently displaying a maintenance notice because its forum-based eligibility verification is no longer available. The [development write-up]({% post_url 2025-02-02-Writing-a-faucet-dapp %}) is still available.
 - **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — Exploring transaction reporting across wallets on the Autonomi network.
 
 ## Selected writing
