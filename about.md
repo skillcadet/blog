@@ -3,31 +3,26 @@ layout: page
 title: About
 ---
 
-I've spent much of my career building, deploying, and troubleshooting technical systems. What has kept me interested is not any particular technology, but the work of understanding a problem, fitting the pieces together, and making something useful.
+I like figuring out how systems fit together, especially when the problem doesn't fit neatly inside one specialty. I've worked in software development, operations, hosting, startups, and decentralized infrastructure. Along the way, I've learned that the most interesting engineering decisions usually involve people, constraints, and tradeoffs as much as technology.
 
-I started out writing software, moved into operations after seeing how easily good engineering could run into deployment realities, and spent years working across the boundary between the two. I've helped build hosting infrastructure, worked with startups, and operated large systems. More recently, I've been returning to application development, exploring AI-assisted tools, and studying new subjects.
+## How I got here
 
-This blog is where I document that work: technical walkthroughs, projects, decisions, mistakes, and things I'm still figuring out. I try to explain *why* I made a choice, not just which commands I ran.
+My first technology job involved rewriting point-of-sale and back-office software for a fuel-station company while I was in college. It got me hooked on solving problems with code.
 
-## Projects and writing
+Later, I saw how easily software projects could overlook the hardware, deployment, and operational realities needed to run them. I moved into operations to understand that side better. In 1995, I co-launched a web-hosting business, designed its technical stack, and helped customers establish an internet presence.
 
-- **Home Alone Program** — An ongoing project to help a community manage daily resident check-ins. It has involved requirements discovery, map-based interfaces, accessibility, authentication, deployment constraints, and a lot of iteration with the people who use it. I'm documenting the work as a draft.
-- **[ANT Faucet](https://ant.xd7.org)** — A tool for dispensing network testing tokens to members of the [Autonomi community](https://forum.autonomi.community/). I wrote about [building a faucet application]({% post_url 2025-02-02-Writing-a-faucet-dapp %}).
-- **[Autonomi Transaction Reporter](https://github.com/ambled/atr)** — A project to correlate asset allocations across wallets involved in Autonomi transactions.
-- **[Weave Node Manager](https://github.com/iweave/weave-node-manager)** — A now-deprecated node management tool from an earlier version of the network.
+Subsequent work took me through startups, decentralized projects, infrastructure automation, and large clusters. Over time, I became interested in returning to application development, bringing the lessons from operations with me.
 
-Some posts are practical tutorials; others are development journals or reflections on learning. They're all works in progress in one sense or another.
+These days, I'm exploring how AI-assisted development changes the way I design and build software. I still care about whether the resulting system is understandable, useful, and maintainable.
 
-## A little history
+## What you'll find here
 
-My first technology job involved rewriting point-of-sale and back-office software for a fuel-station company while I was in college. That got me hooked on solving problems with code.
+Some posts are practical tutorials. Others are development journals, experiments, or accounts of things that didn't work the first time. I try to include the reasoning behind the decisions, not just the final commands or code.
 
-After seeing the disconnect between software development and the systems needed to run it, I shifted toward operations. In 1995, I co-launched a web-hosting business, designed its technical stack, and helped customers establish an internet presence. Later roles took me through startups, decentralized systems, infrastructure automation, and large clusters.
+Current projects and selected articles are linked from the [homepage]({{ '/' | relative_url }}).
 
-I eventually found myself wanting to spend more time on the design and development side again. That doesn't mean leaving operational experience behind; it means bringing those lessons into the things I build.
+## Names and contact
 
-## Elsewhere
+I've used several names online and offline over the years. You may know me as **ambled** on [GitHub](https://github.com/ambled), **_xd7_** on [Discord](https://discord.com/users/_xd7_), or **willidream** on There.com. I used my first name, Garth, until 2017 and have generally used my middle name, Troy, since then. I also create art as Dawn.
 
-I've used several names online and offline over the years. You may know me as **ambled** on [GitHub](https://github.com/ambled), **_xd7_** on Discord, or **willidream** on There.com. I used my first name, Garth, until 2017 and have generally used my middle name, Troy, since then. I also create art as Dawn.
-
-Corrections, suggestions, and technical discussion are welcome through this blog's [GitHub issues](https://github.com/skillcadet/blog/issues) and [discussions](https://github.com/skillcadet/blog/discussions).
+For technical discussion or corrections, you can reach me through [GitHub issues](https://github.com/skillcadet/blog/issues) or [Discord](https://discord.com/users/_xd7_).
